@@ -1,68 +1,162 @@
-{% extends "layouts/base.html" %}
-{% set project = "Home" %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Escape into amazing experiences</title>
+    <style>
+      @import url('https://fonts.googleapis.com/css?family=Roboto:300');
+      body {
+    text-align:center;
+    background:linear-gradient(141deg, #ccc 25%, #ccc 40%, #ccc 55%);
+    color:#555;
+    font-family:'Roboto';
+    font-weight:300;
+    font-size:32px;
+    padding-top:40vh;
+    height:100vh;
+    overflow:hidden;
+    -webkit-backface-visibility: hidden;
+    -webkit-perspective: 1000;
+    -webkit-transform: translate3d(0,0,0);
+  }
+  
+  div {
+    display:inline-block;
+    overflow:hidden;
+    white-space:nowrap;
+  }
+  
+  div:first-of-type {
+    animation: showup 7s ;
+  }
+  
+  div:last-of-type {
+    width:0px;
+    animation: reveal 7s ;
+  }
+  
+  div:last-of-type span {
+    margin-left:-355px;
+    animation: slidein 7s ;
+  }
+  
+  @keyframes showup {
+    0% {opacity:0;}
+    20% {opacity:1;}
+    80% {opacity:1;}
+    100% {opacity:0;}
+  }
+  
+  @keyframes slidein {
+    0% { margin-left:-800px; }
+    20% { margin-left:-800px; }
+    35% { margin-left:0px; }
+    100% { margin-left:0px; }
+  }
+  
+  @keyframes reveal {
+    0% {opacity:0;width:0px;}
+    20% {opacity:1;width:0px;}
+    30% {width:355px;}
+    80% {opacity:1;}
+    100% {opacity:0;width:355px;}
+  }
+  
+  p {
+    font-size:12px;
+    color:#999;
+    margin-top:200px;
+  }
+</style>
+</head>
+<body>
+  <div>Protect</div>
+  <div>
+    <span>yourself and your country</span>
+  </div>
+  <p>Quinn B & Chase G</p>
+  <form action="http://127.0.0.1:5000/projects/MC/">
+    <input class="glow-on-hover" type="submit" value="CLICK HERE TO SEE MORE" />
+</form>
+</body>
+<head>
+  <title>CLICK HERE TO SEE MORE</title>
+  <style>
+    html,
+    .glow-on-hover {
+  width: 1278px;
+  height: 50px;
+  border: none;
+  outline: none;
+  color: #000000;
+  background: #ccc;
+  cursor: pointer;
+  position: relative;
+  z-index: 0;
+  border-radius: 10px;
+}
 
-{% block body %}
-    <!-- Start of body content specific to page -->
-    <div class="px-5 py-5 mx-auto">
-        <h1 class="text-white"><strong>NEW TECHNOLOGIES IN WEAPONRY IN WW1</strong></h1>
-        <div class="row">
-            <div class="col-4">
-                <div class="card">
-                    <a href="http://127.0.0.1:5000/projects/AP/"><img src="https://cdn.britannica.com/07/129807-050-7CEB4BD6/Albatros-DVa-German-World-War-I-1917.jpg" alt="http://127.0.0.1:5000/" style="width:372px;height:250px;"></a>
-                    <div class="card-body">
-                    <h5 class="text-center">Airplanes </h5>
-                    <p class="card-text">
-                        <ol>
-                        </ol>
-                    </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-4">
-                <div class="card">
-                    <a href="http://127.0.0.1:5000/projects/MGUN/"><img src="https://www.historynet.com/wp-content/uploads/2014/07/WeaposnWWI_2000x577-e1647023041887.jpg" alt="http://127.0.0.1:5000/" style="width:372px;height:250px;"></a>
-                    <div class="card-body">
-                    <h5 class="text-center">Machine Guns</h5>
-                    <p class="card-text">
-                        <ol>
-                        </ol>
-                    </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-4">
-                <div class="card">
-                    <a href="http://127.0.0.1:5000/projects/GAS/"><img src="https://docs.rferl.org/Infographics//2018/2018_04/2018_04_Chem/images/assets/germany_first_use-4b7776bcf1.jpg" alt="http://127.0.0.1:5000/" style="width:372px;height:250px;"></a>
-                    <div class="card-body">
-                    <h5 class="text-center">Poison Gas</h5>
-                    <p class="card-text">
-                        <ol>
-                        </ol>
-                    </p>
-                    </div>
-                </div>
-            </div>
-            <p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </p>
-            <div class="card text-center">
-                <div class="card-body">
-                    <p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </p>
-                    <h1 class="text-black"><strong>NEW TECHNOLOGIES</strong></h1>
-                    <p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </p>
-                  <p class="card-text"><strong>The development of new technologies in weaponry during World War I had a profound effect on the conduct and outcome of the war. The introduction of machine guns, airplanes, and poison gas on the battlefield greatly increased the destructiveness of warfare and transformed the nature of combat. Airplanes, for instance, allowed for investigation, bombing, and air-to-air combat. Poison gas caused widespread suffering and death, leading to the creation of gas masks for soldiers. These new technologies in weaponry resulted in a higher casualty rate among soldiers and made it increasingly difficult to achieve decisive victories. The horrors of these weapons also led to the international laws regulating the use of warfare technologies. The development of weapons in World War I increased the number of deaths and destruction. According to History Hit, “In 1914-15 German statistics estimated that 49 casualties were caused by artillery to every 22 by infantry, by 1916-18 this was at 85 by artillery for every 6 by infantry.”</strong></p>
-                  <p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </p>
-                </div>
-              </div>
-              <p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </p>
-              <div class="card text-center">
-                  <div class="card-body">
-                    <p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </p>
-                    <h1 class="text-black"><strong>CAUSE AND EFFECT</strong></h1>
-                    <p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </p>
-                    <p class="card-text"><strong>The development of new technologies in weaponry during World War One had a profound effect on the conduct and outcome of the war. The introduction of machine guns, airplanes, and poison gas on the battlefield greatly increased the lethality of warfare and transformed the nature of combat. Airplanes, for instance, allowed for reconnaissance, bombing, and air-to-air combat. Poison gas caused widespread suffering and death, leading to the creation of gas masks for soldiers. These new technologies in weaponry resulted in a higher casualty rate among soldiers and made it increasingly difficult to achieve decisive victories. The horrors of these weapons also led to the eventual banning of chemical weapons and the development of international laws regulating the use of warfare technologies.</strong></p>
-                    <p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </p>
-                </div>
-                </div>
-        </div>
-    </div>
+.glow-on-hover:before {
+  content: "";
+  background: linear-gradient(
+    45deg,
+    #e4e3e3,
+    #e4e3e3,
+    #e4e3e3,
+    #e4e3e3,
+    #e4e3e3,
+    #e4e3e3,
+    #e4e3e3,
+    #e4e3e3,
+    #e4e3e3
+  );
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  background-size: 400%;
+  z-index: -1;
+  filter: blur(5px);
+  width: calc(500% + 4px);
+  height: calc(100% + 4px);
+  animation: glowing 20s linear;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  border-radius: 10px;
+}
 
-    {% endblock %}
+.glow-on-hover:active {
+  color: #000;
+}
+
+.glow-on-hover:active:after {
+  background: transparent;
+}
+
+.glow-on-hover:hover:before {
+  opacity: 1;
+}
+
+.glow-on-hover:after {
+  z-index: -1;
+  content: "";
+  position: absolute;
+  width: 0%;
+  height: 100%;
+  background: #111;
+  left: 0;
+  top: 0;
+  border-radius: 10px;
+}
+
+@keyframes glowing {
+  0% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 400% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
+</style>
+</html>

@@ -1,11 +1,10 @@
 <!-- Navigation Bar from bootstrap
 This HTML is setup as a fragment allowing it to be "included" by other HTML files via Jinja2
 -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="https://csp.nighthawkcodingsociety.com/">  </a>
-    <img src="https://www.northumberlandarchives.com/wp-content/uploads/2018/03/WW1-Logo.png" width="50" height="50" class="d-inline-block align-center" alt="">
     <a class="navbar-brand" href="https://csp.nighthawkcodingsociety.com/">  </a>
-    <a class="navbar-brand" href="http://127.0.0.1:5000/">New Technologies in WW1</a>
+    <a class="navbar-brand" href="http://127.0.0.1:5000/">Domestic Surveillance</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -54,8 +53,8 @@ This HTML is setup as a fragment allowing it to be "included" by other HTML file
                     More
                 </a>
                 <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-                    <li><a class="dropdown-item" href={{ url_for('projects.WS') }}>Works Cited</a></li>
-                    <li><a class="dropdown-item" href={{ url_for('projects.MC') }}>MC Quiz</a></li>
+                    <li><a class="dropdown-item" href={{ url_for('projects.WS') }}>Lets Learn Together</a></li>
+                    <li><a class="dropdown-item" href={{ url_for('projects.GAS') }}>About Us</a></li>
                 </ul>
             </li>
         </ul>

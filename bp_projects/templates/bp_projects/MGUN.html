@@ -1,25 +1,140 @@
-{% extends "layouts/base.html" %}
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Play&display=swap');
 
-{% block body %}
-<p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </p>
-<div class="card text-center">
-    <div class="card-body">
-      <p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </p>
-      <h1 class="text-black"><strong>MACHINE GUN</strong></h1>
-      <p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </p>
-      <p class="card-text"><strong>Hiram Maxim created the first efficacious machine gun in 1884. It was a mobile gun that only needed one barrel to fire all of its bullets automatically. He did this by harnessing a bullet’s recoil power. The machine gun could fire a good distance and could kill a person with one shot in the right place. They were able to fire hundreds of rounds per minute which was more effective than the traditional single-shot rifles that had been used previously. This weapon was first used in 1883 in modern-day Zimbabwe, when the British invaded South Africa. Later, machine guns were used in World War I, which is also known as “the machine gun war”. World War I was known as this because machine guns were/are easily operated by just a few soldiers. This makes it very efficient for armies so that others could concentrate on other ways to defend their positions. Machine guns were very destructive and forced the British Army to create trench warfare. Soldiers needed to dig into the ground and create a base to protect themselves. These guns were very accurate and could fire up to 500 rounds per minute. Today, machine guns are used in many militaries around the world. After both World Wars, the guns have had many improvements to better the military.</strong></p>
-      <p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </p>
-  </div>
-  </div>
-  <p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </p>
-<div class="card text-center">
-    <div class="card-body">
-      <p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </p>
-      <h1 class="text-black"><strong>HOW IT WORKS</strong></h1>
-      <p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </p>
-      <p class="card-text"><strong>A machine gun is a fully automatic firearm that fires bullets in rapid succession from a belt or magazine. When the trigger is pulled, the firing pin strikes the primer in the cartridge, causing it to ignite and propel the bullet out of the barrel. The recoil from the fired bullet then causes the mechanism to reload and fire the next round. This process continues as long as the trigger is held down or until the ammunition is exhausted. Most modern machine guns use gas or recoil-operated systems to automatically cycle the action and feed the ammunition, allowing for high rates of fire that can exceed several hundred rounds per minute. The effectiveness of machine guns in combat has made them a staple of modern warfare, though their destructive capabilities have also led to international regulations on their use.</strong></p>
-      <p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </p>
-  </div>
-  </div>
-  <p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </p>
+        .wrapper.ten {
+            background-color: #000000;
+        }
+        .bounce {
+            font-size: 5rem;
+            width: 100%;
+            margin: 2 rem auto;
+            display: inline-flex;
+            justify-content: center;
+            -webkit-box-reflect: below -20px linear-gradient(transparent, #211e1e2e);
+        }
+        .bounce span {
+            display: inline-flex;
+            color: #c7f4ff;
+            font-family: "Play", sans-serif;
+            animation: bounce 0.8s ;
+        }
+        @keyframes bounce {
+            0%, 25%, 50%, 75%, 100% {
+                transform: translateY(0);
+            }
+            25% {
+                transform: translateY(-30px);
+            }
+        }
+        .ten span:nth-of-type(1) {
+            animation-delay: 1.2s;
+        }
+        .ten span:nth-of-type(2) {
+            animation-delay: 1.3s;
+        }
+        .ten span:nth-of-type(3) {
+            animation-delay: 1.4s;
+        }
+        .ten span:nth-of-type(4) {
+            animation-delay: 1.5s;
+        }
+        .ten span:nth-of-type(5) {
+            animation-delay: 1.6s;
+        }
+        .ten span:nth-of-type(6) {
+            animation-delay: 1.7s;
+        }
+        .ten span:nth-of-type(7) {
+            animation-delay: 1.8s;
+        }
+        .ten span:nth-of-type(8) {
+            animation-delay: 1.9s;
+        }
+        .ten span:nth-of-type(9) {
+            animation-delay: 2.0s;
+        }
+        .ten span:nth-of-type(10) {
+            animation-delay: 2.1s;
+        }
+        .ten span:nth-of-type(11) {
+            animation-delay: 2.2s;
+        }
+        .ten span:nth-of-type(12) {
+            animation-delay: 2.3s;
+        }
+        .ten span:nth-of-type(13) {
+            animation-delay: 2.4s;
+        }
+        .ten span:nth-of-type(14) {
+            animation-delay: 2.5s;
+        }
+        .ten span:nth-of-type(15) {
+            animation-delay: 2.6s;
+        }
+        .ten span:nth-of-type(16) {
+            animation-delay: 2.7s;
+        }
+        .ten span:nth-of-type(17) {
+            animation-delay: 2.8s;
+        }
+        .ten span:nth-of-type(18) {
+            animation-delay: 2.9s;
+        }
+        .ten span:nth-of-type(19) {
+            animation-delay: 3.0s;
+        }
+        .ten span:nth-of-type(20) {
+            animation-delay: 3.1s;
+        }
+        .ten span:nth-of-type(21) {
+            animation-delay: 3.2s;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper ten">
+        <div>
+            <h3 class="bounce">
+                <span>D</span>
+                <span>O</span>
+                <span>M</span>
+                <span>E</span>
+                <span>S</span>
+                <span>T</span>
+                <span>I</span>
+                <span>C</span>
+                <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                <span>S</span>
+                <span>U</span>
+                <span>R</span>
+                <span>V</span>
+                <span>E</span>
+                <span>I</span>
+                <span>L</span>
+                <span>L</span>
+                <span>A</span>
+                <span>N</span>
+                <span>C</span>
+                <span>E</span>
+                <span> </span>
+            </h3>
+        </div>
+    </div>
+</body>
+</html>
+{% block background %}
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body {
+  background-image: url('https://w0.peakpx.com/wallpaper/58/329/HD-wallpaper-plain-black-000000-dark-none-pitch-pure.jpg');
+}
+</style>
+</head>
 {% endblock %}
+
+</html>
