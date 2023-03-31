@@ -1,26 +1,297 @@
-{% extends "layouts/base.html" %}
 
-{% block body %}
+<!DOCTYPE html>
+<html lang="en" >
 
-<p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </p>
-<div class="card text-center">
-    <div class="card-body">
-      <p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </p>
-      <h1 class="text-black"><strong>AIRPLANE</strong></h1>
-      <p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </p>
-      <p class="card-text"><strong>When World War I began, the airplanes quickly advanced and by the end of the war, 15,000 more planes were produced. Two aircraft companies, Boeing and Lockheed, became the leading companies to produce planes for the war.  The first version of an airplane was first introduced by Orville and Wilbur Wright in 1903. Although the plane only flew for twelve seconds, this sparked many ideas to critique the airplane. The French created an aero-engine in 1905, but by this time, the Wright brothers had been able to travel in their newly built airplane for over three hours.  The airplane was first used in the Italo-Turkish War in 1911 and 1912. Airplanes dropped explosives on their enemy's territories which created a great quantity of destruction. At the time, the airplanes were not exceptionally reliable because they couldn’t carry heavy materials and were dangerous. This weapon changed the nature of war because it sped up the delivery of mail, caused a tremendous amount of damage to countries, and it helped gather information on enemies. Countries could communicate with one another quicker and much more efficiently. When the planes became stronger, they could carry heavier machinery and drop bombs on their opponents to cause mass destruction. The airplanes could travel over land to track down enemy bases and see what they’re planning. Now, airplanes are used for leisure for people, and are also used for the military. Fighter airplanes are equipped with missiles for fighting other planes, and a lot of technology to detect enemy aircrafts.</strong></p>
-      <p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </p>
-  </div>
-  </div>
-  <p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </p>
-<div class="card text-center">
-    <div class="card-body">
-      <p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </p>
-      <h1 class="text-black"><strong>HOW IT WORKS</strong></h1>
-      <p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </p>
-      <p class="card-text"><strong>During World War One, airplanes were still a relatively new technology, having only been invented a few years prior. Nevertheless, they quickly became a vital component of military strategy, serving primarily as reconnaissance aircraft to gather intelligence on enemy positions and movements. Early airplanes were made of wood and fabric and were powered by internal combustion engines, which allowed them to achieve speeds of up to 100 miles per hour. They were also armed with machine guns and bombs, which enabled them to attack ground targets and engage in aerial combat with enemy planes. Pilots flew the planes using basic instruments, such as compasses and altimeters, and relied on their skill and experience to navigate through often dangerous and unpredictable conditions. Overall, airplanes played a crucial role in World War One, helping to revolutionize warfare and paving the way for the modern military aircraft that we know today.</strong></p>
-      <p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </p>
-  </div>
-  </div>
-  <p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </p>
-{% endblock %}
+<head>
+  <meta charset="UTF-8">
+  
+
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  
+  <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Montserrat:400,700'>
+  
+<style>
+@charset "UTF-8";
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 300vh;
+  background-image: linear-gradient(to top, #623b02 0%, #fdcf44 100%);
+}
+
+header {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+header h1, header button {
+  position: relative;
+  z-index: 10;
+}
+header h1 {
+  text-transform: uppercase;
+  letter-spacing: 1pt;
+  font-size: 3em;
+  color: #fff;
+  font-family: "Montserrat", sans-serif;
+}
+header button {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  position: absolute;
+  bottom: 100px;
+  left: calc(50% - 60px);
+  width: 120px;
+  height: 50px;
+  border: 0;
+  box-shadow: 2px 1px 20px 0 rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  cursor: pointer;
+  background: #fff;
+  font-size: 1em;
+  color: #09203f;
+  transition: all 0.8s cubic-bezier(0.645, 0.045, 0.355, 1), transform 0.3s cubic-bezier(0.455, 0.03, 0.515, 0.955), box-shadow 0.3s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+  overflow: hidden;
+}
+header button:hover {
+  box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.5);
+}
+header button:focus {
+  outline: 0;
+}
+header button:before, header button:after {
+  font-family: "Font Awesome 5 Free";
+  transition: all 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
+  top: 17px;
+  position: absolute;
+}
+header button:before {
+  content: "";
+  opacity: 1;
+  left: 53px;
+}
+header button:after {
+  content: "";
+  opacity: 0;
+  left: 0;
+}
+header .triangle {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, #623b02 0%, #edbe00 100%);
+  transition: all 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+}
+header .triangle.left {
+  clip-path: polygon(0 0, 0% 100%, 100% 100%);
+}
+header .triangle.right {
+  clip-path: polygon(100% 0, 0 0, 100% 100%);
+}
+header.open .triangle.left {
+  clip-path: polygon(0 0, 0 100%, 0 100%);
+}
+header.open .triangle.right {
+  clip-path: polygon(100% 0, 100% 0, 100% 100%);
+}
+header.open button {
+  left: 40px;
+  bottom: 40px;
+  width: 50px;
+  border-radius: 50%;
+}
+header.open button:before {
+  opacity: 0;
+  left: 100%;
+}
+header.open button:after {
+  opacity: 1;
+  left: 18px;
+}
+header.open button.menu {
+  width: 100%;
+  height: 100%;
+  bottom: 0;
+  left: 0;
+  border-radius: 0;
+}
+header.open button.menu:after {
+  left: -100%;
+}
+
+content section {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 1em;
+  letter-spacing: 2pt;
+  color: #fff;
+}
+
+nav {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: none;
+}
+nav ul {
+  list-style: none;
+}
+nav ul li {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: 2;
+  letter-spacing: 1pt;
+  font-size: 2em;
+  color: #09203f;
+  animation: fadeDown 0.5s forwards;
+  opacity: 0;
+  cursor: pointer;
+  transform: translateY(-20px);
+  transition: all 0.3s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+}
+nav ul li:hover {
+  text-shadow: 2px 1px 40px rgba(0, 0, 0, 0.5);
+  opacity: 0.8;
+}
+nav ul li:nth-child(1) {
+  animation-delay: 0.8s;
+}
+nav ul li:nth-child(2) {
+  animation-delay: 0.9s;
+}
+nav ul li:nth-child(3) {
+  animation-delay: 1s;
+}
+nav #nav-close {
+  position: fixed;
+  top: 40px;
+  right: 40px;
+  font-size: 1.5em;
+  cursor: pointer;
+  animation: fadeDown 0.5s forwards;
+  animation-delay: 1.1s;
+  opacity: 0;
+  color: #09203f;
+  transform: translateY(-20px);
+}
+@keyframes fadeDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+</style>
+
+  <script>
+  window.console = window.console || function(t) {};
+</script>
+
+  
+  
+</head>
+
+<body translate="no">
+  <header>
+  <div class="triangle left"><h1>NBA</h1></div>
+  <div class="triangle right"><h1>NBA</h1></div>
+  <button></button>
+</header>
+
+<nav>
+  <ul>
+    <li>HOME</li>
+    <li>TRENDING</li>
+    <li>SIGN OUT</li>
+  </ul>
+  <div id="nav-close"><i class="fas fa-times"></i></div>
+</nav>
+
+<content>
+
+</content>
+    <script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-2c7831bb44f98c1391d6a4ffda0e1fd302503391ca806e7fcc7b9b87197aec26.js"></script>
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
+      <script id="rendered-js" >
+// function to open/close nav
+function toggleNav() {
+  // if nav is open, close it
+  if ($("nav").is(":visible")) {
+    $("nav").fadeOut();
+    $("button").removeClass("menu");
+  }
+  // if nav is closed, open it
+  else {
+      $("button").addClass("menu");
+      $("nav").fadeIn().css('display', 'flex');
+    }
+}
+
+// when clicking + or ☰ button
+$("button").click(function () {
+  // when clicking ☰ button, open nav
+  if ($("header").hasClass("open")) {
+    toggleNav();
+  }
+  // when clicking + button, open header
+  else {
+      $("header").addClass("open");
+    }
+});
+
+// close nav
+$("#nav-close").click(function () {
+  toggleNav();
+});
+
+// scroll to sections
+$("nav li").click(function () {
+  // get index of clicked li and select according section
+  var index = $(this).index();
+  var target = $("content section").eq(index);
+
+  toggleNav();
+
+  $('html,body').delay(300).animate({
+    scrollTop: target.offset().top },
+  500);
+});
+//# sourceURL=pen.js
+    </script>
+
+  
+</body>
+
+</html>
