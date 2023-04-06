@@ -18,8 +18,8 @@ def page_not_found(e):
     return render_template('404.html'), 404
 
 @app.route('/')  # connects default URL to index() function
-def index():
-    return render_template("login.html")
+def AP():
+    return render_template("AP.html")
 
 @app.route('/stub/')  # connects /stub/ URL to stub() function
 def stub():
