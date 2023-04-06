@@ -3,26 +3,201 @@
 <html lang="en" >
 
 <head>
+  <meta charset="UTF-8">
+
+<style>
+* {
+    all: unset;
+    display: revert;
+    box-sizing: border-box;
+}
+
+[default-styles] {
+    all: revert;
+}
+
+html {
+    font-family: sans-serif;
+    font-size: 16px;
+    color: rgb(250, 250, 250);
+    background-color: rgb(25, 25, 25);
+    padding: 4em;
+}
+
+h1 {
+    font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 7vw;
+  line-height: 1;
+  color: #ffeba7;
+  text-align: center;
+  -webkit-text-stroke: 2px #ffeba7;
+  text-stroke: 2px #ffeba7;
+  -webkit-text-fill-color: transparent;
+  text-fill-color: transparent;
+  color: transparent;
+}
+
+h2 {
+    font-size: 2.25em;
+    margin: 1rem 0;
+}
+
+h3 {
+    font-size: 1.5em;
+    margin: 1rem 0;
+    font-weight: 700;
+}
+
+input {
+    color: rgb(245, 245, 245);
+    background-color: rgb(25, 25, 25);
+    border: 2px solid rgba(250, 250, 250, 0.5);
+    border-radius: 8px;
+    text-align: center;
+    padding: 1em;
+    margin-right: 1rem;
+    transition: all 0.25s ease;
+}
+
+input::placeholder {
+    color: rgba(250, 250, 250, 0.5);
+}
+
+input:focus {
+    border: 2px solid rgba(250, 250, 250);
+    transition: all 0.25s ease;
+}
+
+button {
+    color: rgb(25, 25, 25);
+    background-color: rgba(250, 250, 250, 0.8);
+    padding: 1em;
+    border-radius: 8px;
+    transition: all 0.25s ease;
+    font-weight: 700;
+}
+
+button:hover {
+    background-color: rgb(250, 250, 250);
+    transition: all 0.25s ease;
+}
+
+ul {
+    list-style-type: none;
+}
+
+li {
+    margin: 0.5rem 0;
+}
+
+div {
+    padding: 1em 2em;
+    margin: 2em 0;
+    border: 2px solid rgb(250, 250, 250);
+    border-radius: 16px;
+    transition: all 0.5s ease;
+}
+
+p {
+    margin: 2rem 0;
+}
+</style>
+
+  <script>
+  window.console = window.console || function(t) {};
+</script>
+
+  
+  
+</head>
+
+<body translate="no">
+  <section>
+        <form action="">
+            <h1 class="mb-0">MINDLESS SHEEP</h1>
+            <h2 class="mb-0">&nbsp;&nbsp;&nbsp;&nbsp;</h2>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="text" id="searchFirst" name="searchFirst" placeholder="First Name">
+            <input type="text" id="searchLast" name="searchLast" placeholder="Last Name">
+            <button>Search Stats</button>
+        </form>
+    </section>
+    <section id="results"></section>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-2c7831bb44f98c1391d6a4ffda0e1fd302503391ca806e7fcc7b9b87197aec26.js"></script>
+
+  
+      <script id="rendered-js" >
+const button = document.querySelector("button");
+const searchFirst = document.querySelector("#searchFirst");
+const searchLast = document.querySelector("#searchLast");
+const results = document.querySelector("#results");
+
+const searchPlayers = async searchQuery => {
+  const searchResults = await axios.get(`https://www.balldontlie.io/api/v1/players?search=${searchQuery}&per_page=100`);
+  return searchResults.data.data;
+};
+
+const fetchStats = async id => {
+  const fullStats = await axios.get(`https://www.balldontlie.io/api/v1/season_averages?player_ids[]=${id}`);
+  return fullStats.data.data[0];
+};
+
+button.addEventListener("click", async event => {
+  event.preventDefault();
+  results.innerHTML = "";
+  let playerCount = 0;
+  const playerList = await searchPlayers((searchFirst.value.trim() + " " + searchLast.value.trim()).trim());
+  for (let player of playerList) {
+    const stats = await fetchStats(player.id);
+    if (stats) {
+      playerCount++;
+      const playerName = document.createElement("h2");
+      playerName.append(`${player.first_name} ${player.last_name} (${player.position})`);
+      const playerTeam = document.createElement("h3");
+      playerTeam.append(player.team.full_name);
+      const playerPoints = document.createElement("li");
+      playerPoints.append(`PPG: ${stats.pts}`);
+      const playerAssists = document.createElement("li");
+      playerAssists.append(`APG: ${stats.ast}`);
+      const playerRebounds = document.createElement("li");
+      playerRebounds.append(`RPG: ${stats.reb}`);
+      const playerSteals = document.createElement("li");
+      playerSteals.append(`SPG: ${stats.stl}`);
+      const playerBlocks = document.createElement("li");
+      playerBlocks.append(`BPG: ${stats.blk}`);
+      const playerStats = document.createElement("ul");
+      playerStats.append(playerPoints, playerAssists, playerRebounds, playerSteals, playerBlocks);
+      const playerProfile = document.createElement("div");
+      playerProfile.append(playerName, playerTeam, playerStats);
+      results.append(playerProfile);
+    }
+  }
+  if (playerCount === 0) {
+    const noResults = document.createElement("p");
+    noResults.append("Oops, looks like we couldn't find the player you were looking for... Make sure that the name you entered is spelled correctly and try again!");
+    results.append(noResults);
+  }
+});
+//# sourceURL=pen.js
+    </script>
+
+  
+</body>
+
+</html>
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
 
 <style>
 
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap');
 
-body{
-	font-family: 'Montserrat', sans-serif;
-	font-weight: 300;
-	font-size: 15px;
-	line-height: 1.7;
-	color: #ececee;
-	background-color: #141414;
-	overflow: hidden;
-  background-position: center;
-  background-repeat: repeat;
-  background-size: 4%;
-  height: 100vh;
-  width: 100%;
-}
+
 .section-center{
   position: absolute;
   top: 30%;
@@ -307,20 +482,6 @@ h1{
   	</nav>
 
   	<div class="section-center">
-  		<h1 class="mb-0">ABOUT US</h1>
-          <h4 class="mb-0">If you're a fan of basketball and enjoy sports betting, you'll know how important it is to have access to accurate and up-to-date statistics on your favorite NBA players. That's where Mindless Sheep comes in.
-
-            Mindless Sheep is a website that is dedicated to providing users with the most comprehensive and reliable NBA statistics available. With Mindless Sheep, you'll have access to a wealth of information on player performance, team rankings, and much more.
-            
-            One of the key benefits of Mindless Sheep is that it allows you to make well-informed bets on NBA players. With the site's wealth of data, you'll be able to analyze player statistics and make informed decisions about which players to bet on. This will give you a competitive edge and increase your chances of winning big.
-            
-            Another great feature of Mindless Sheep is its user-friendly interface. The site is designed to be easy to use, with intuitive navigation and clear, concise information. Whether you're a seasoned sports bettor or a newcomer to the world of NBA betting, you'll find Mindless Sheep to be an invaluable resource.
-            
-            So, if you're looking for a reliable source of NBA statistics that will help you make well-informed sports bets on your favorite players, look no further than Mindless Sheep. Sign up today and start exploring the site's wealth of information. You'll be glad you did!
-            
-            
-            
-            </h4>
   	</div>
     <script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-2c7831bb44f98c1391d6a4ffda0e1fd302503391ca806e7fcc7b9b87197aec26.js"></script>
 
