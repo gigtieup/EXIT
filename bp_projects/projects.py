@@ -27,3 +27,23 @@ def game():
 @app_projects.route('/AB/')
 def AB():
     return render_template("AB.html")
+
+@app_projects.route('/three/')
+def three():
+    return render_template("three.html")
+
+@app_projects.route('/games/')
+def games():
+    return render_template("games.html")
+
+@app_projects.route('/nhl/')
+def nhl():
+    return render_template("nhl.html")
+
+@app_projects.route('/about/')
+def about():
+    return render_template("about.html")
+
+@app_projects.route('/nab/')
+def nab():
+    return render_template("nab.html")

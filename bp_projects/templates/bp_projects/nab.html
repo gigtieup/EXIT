@@ -1,0 +1,1229 @@
+
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  
+  <link href="https://fonts.googleapis.com/css?family=Lexend+Exa&display=swap" rel="stylesheet">
+
+
+<style>
+body {
+  background: #F9F8FD;
+  font-family: "Lexend Exa", sans-serif;
+}
+
+nav {
+  position: absolute;
+  top: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: inline-block;
+  border: 2px solid #EBECF1;
+  border-radius: 30px;
+  animation: slide-in 1s ease-out;
+}
+
+ul {
+  position: relative;
+  display: flex;
+  flex: 1 1 auto;
+  margin: 0;
+  padding: 0 30px;
+  list-style-type: none;
+}
+ul li:not(:last-child) {
+  margin-right: 40px;
+}
+ul li {
+  border: 2px solid transparent;
+  border-radius: 5px;
+  padding: 10px;
+  transition: background 0.2s;
+}
+ul li a {
+  color: #494949;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+ul li ul {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  display: block;
+  margin: 12px -12px;
+  padding: 0;
+  background: #000000;
+  border: 2px solid #000000;
+  border-right: 2px solid #000000;
+  border-bottom: 2px solid #000000;
+  border-radius: 5px;
+  transition: opacity 0.2s, visibility 0.2s;
+}
+ul li ul li {
+  margin: -2px 0 0 -2px;
+  width: calc(100% - 20px);
+  line-height: 1.7;
+}
+ul li ul li a {
+  color: #464646;
+}
+ul li:hover a {
+  color: #000000;
+}
+ul li:hover ul {
+  visibility: visible;
+  opacity: 1;
+  box-shadow: 0px 3px 5px 2px #EBECF1;
+}
+ul li:hover ul li a {
+  color: #F9F8FD;
+}
+
+@keyframes slide-in {
+  0% {
+    top: -50px;
+  }
+  40% {
+    top: 20px;
+  }
+  70% {
+    top: 10px;
+  }
+  100% {
+    top: 15px;
+  }
+}
+</style>
+
+  <script>
+  window.console = window.console || function(t) {};
+</script>
+
+  
+  
+</head>
+
+<body translate="no">
+  <nav>
+  <ul>
+    <li><a href="http://127.0.0.1:5000/projects/three/">HOME</a></li>
+    <li>
+      <a href="#0">NBA</a>
+      <ul>
+        <li><a href="http://127.0.0.1:5000/projects/AB/">PLAYER STATS</a></li>
+        <li><a href="http://127.0.0.1:5000/projects/game/">GAMEBOARD</a></li>
+        <li><a href="#0">BETTING HELP</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#0">NHL</a>
+      <ul>
+        <li><a href="http://127.0.0.1:5000/projects/nhl/">PLAYER STATS</a></li>
+        <li><a href="http://127.0.0.1:5000/projects/games/">GAMEBOARD</a></li>
+        <li><a href="#0">BETTING HELP</a></li>
+      </ul>
+    </li>
+    <li><a href="#0">About</a></li>
+    <li><a href="#0">LOG OUT</a></li>
+  </ul>
+</nav>
+  
+  
+  
+  
+</body>
+
+</html>
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+
+<style>
+html {
+  height: 100%;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  font-family: var(--poppins);
+}
+
+:root {
+  --heightNav: 65px;
+  --wht: #fff;
+  --blk: #000;
+  --primary: #28272b;
+  --poppins: "Poppins", sans-serif;
+  --NBAprimary: #17408b;
+  --NBAsecondary: #c9082a;
+}
+
+.active_overlay {
+  transform: translateY(0%) !important;
+}
+
+.notice {
+  background-color: var(--NBAsecondary);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  width: 75%;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.notice-bc {
+  height: 15em;
+  background-image: url(https://cdn.dribbble.com/users/14059/screenshots/15007708/media/f20f1a7efbb2f0a8938c7fb1e32aba2a.jpg?compress=1&resize=1600x1200);
+  background-position: center;
+  background-size: cover;
+}
+.notice-con {
+  padding: 10px;
+}
+.notice-mssg {
+  padding: 15px 0;
+  font-size: 0.85em;
+}
+.notice-btn {
+  cursor: pointer;
+  padding: 10px 4px;
+  font-size: 0.85em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  border: none;
+  background-color: var(--NBAsecondary);
+  color: var(--wht);
+  font-family: inherit;
+  border-radius: 4px;
+}
+
+.overlay {
+  height: calc(100% - var(--heightNav));
+  bottom: 0;
+  width: 100%;
+  background-color: #ffffff;
+  position: absolute;
+  z-index: 43;
+  transition: all 0.85s ease-in-out;
+  transform: translateY(100%);
+}
+.overlay-inner {
+  height: 100%;
+  position: relative;
+  overflow: scroll;
+}
+.overlay-inner::-webkit-scrollbar {
+  display: none;
+}
+
+.dash {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 700px;
+  width: 430px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.dash-left {
+  background-color: var(--NBAprimary);
+  padding: 0px 15px;
+  height: 65px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.dash-right {
+  position: relative;
+  flex: 1;
+  background-color: var(--wht);
+  height: calc(100% - 64px);
+  overflow: scroll;
+}
+.dash-right::-webkit-scrollbar {
+  display: none;
+}
+
+.header-left {
+  color: var(--NBAsecondary);
+  font-size: 0.85em;
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+.header-left-span {
+  color: var(--NBAprimary);
+}
+.header-left-span::before {
+  content: "|";
+  color: var(--wht);
+}
+
+.teams {
+  border-radius: 8px;
+  width: calc(100% - 20px);
+  margin: 1em auto 4em auto;
+  display: flex;
+  flex-wrap: wrap;
+  z-index: 2;
+}
+.teams-item {
+  flex: 1 35%;
+  align-items: center;
+  display: flex;
+  background-color: #e8e8e8;
+  flex-direction: column;
+  padding: 10px 6px;
+  border-radius: 4px;
+  margin: 0.25em;
+}
+.teams-item-info {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  font-size: 0.84em;
+  align-items: center;
+}
+.teams-item:hover {
+  cursor: pointer;
+  transition: all 0.4s ease-in-out;
+  background-color: var(--blk);
+}
+.teams-item-logo {
+  display: flex;
+}
+.teams-item-logo img {
+  height: 32px;
+  width: 32px;
+}
+.teams-item-name {
+  color: #a7a7a7;
+}
+.teams-item-short {
+  color: #696969;
+}
+
+.logo {
+  cursor: pointer;
+  display: flex;
+}
+.logo img {
+  height: 32px;
+}
+
+.close {
+  background-color: var(--NBAsecondary);
+  border-radius: 4px;
+  height: 54px;
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  left: 10px;
+  width: calc(100% - 20px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 1.2s ease-in-out;
+  z-index: 99;
+}
+.close-span {
+  color: var(--wht);
+  font-size: 0.85em;
+}
+
+.team-selected_close {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.team_nav {
+  margin-left: auto;
+  cursor: pointer;
+}
+.team_nav-span {
+  display: flex;
+  align-items: center;
+  padding: 4px 7px;
+  width: 59px;
+  background-color: var(--wht);
+  color: var(--NBAprimary);
+  border-radius: 100px;
+}
+.team_nav-icon {
+  display: flex;
+}
+.team_nav-icon img {
+  height: 20px;
+  width: 20px;
+}
+.team_nav-short {
+  font-size: 0.84em;
+  margin-left: 7px;
+}
+
+.hdr {
+  padding: 7em 0;
+  background-size: cover;
+}
+
+.nav {
+  display: flex;
+  flex-direction: row;
+  position: sticky;
+  top: 0;
+  z-index: 33;
+  background-color: #f3f3f3;
+}
+.nav-items {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  align-items: center;
+  cursor: pointer;
+}
+.nav-item {
+  font-size: 0.84em;
+  text-align: center;
+  flex: 1;
+  list-style: none;
+  display: flex;
+  padding: 10px 2px;
+  align-items: center;
+  justify-content: center;
+  background-color: #e6e6e6;
+  color: var(--blk);
+  border-left: 1px solid #bfbfbf;
+}
+.nav-item-active {
+  background-color: var(--NBAsecondary);
+  color: var(--wht);
+}
+
+.fetched_info {
+  display: none;
+  height: 100%;
+}
+.fetched-content {
+  height: 100%;
+}
+
+.content {
+  display: none;
+  padding: 10px;
+  height: 100%;
+}
+.content-active {
+  display: block;
+}
+
+.data-standings {
+  background-color: #000;
+}
+.o_desc {
+  padding: 10px;
+  font-size: 0.8em;
+  background-color: #f6f6f6;
+  border-radius: 6px;
+  font-weight: 300;
+}
+.o_game {
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+  justify-content: space-between;
+}
+.o_games-hdr {
+  font-size: 0.85em;
+  font-weight: 300;
+  margin: 1.4em 0;
+}
+.o_games-item {
+  margin: 0.5em 0;
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+  font-size: 0.8em;
+  border-radius: 4px;
+  border: 1px solid #e3e3e3;
+  transition: all ease-in-out 0.4s;
+}
+.o_games-item:hover {
+  background-color: #e3e3e3;
+}
+
+.games-flex {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.upcoming_game {
+  position: relative;
+  width: 100%;
+  height: 10em;
+  background: url("https://www.si.com/.image/t_share/MTcwMjUxMzM2NzI0NTIyMjA4/blazers-basketball.jpg") center center no-repeat;
+  background-size: cover;
+  border-radius: 6px;
+  margin: 1em 0;
+}
+.upcoming_game:before {
+  border-radius: 6px;
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-image: linear-gradient(to bottom right, #002f4b, #dc4225);
+  opacity: 0.6;
+}
+.upcoming_game-item {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.upcoming_game-item-headline {
+  color: var(--wht);
+  white-space: nowrap;
+  font-size: 1.1em;
+  margin-bottom: 5px;
+}
+.upcoming_game-item-time {
+  color: var(--wht);
+  font-size: 0.85em;
+}
+
+.schedule-game {
+  position: relative;
+  margin: 0.5em 0;
+  border-radius: 4px;
+  background-color: #171616;
+  color: #f5f5f5;
+  padding: 10px;
+  overflow: hidden;
+  font-size: 0.85em;
+  display: flex;
+  flex-direction: row;
+}
+.schedule-game-left {
+  width: 60%;
+  border-right: 1px solid #3f3f3f;
+}
+.schedule-game-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.schedule-game-time {
+  padding: 10px;
+}
+.schedule-game-date {
+  padding: 10px;
+}
+.schedule-game-TV {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  width: fit-content;
+  padding: 1px 7px;
+  background-color: var(--NBAsecondary);
+  font-size: 0.7em;
+  color: var(--wht);
+}
+
+.live-item {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 10px;
+  margin-top: 1em;
+  overflow: hidden;
+  border-radius: 4px;
+  background-color: #111010;
+  position: relative;
+}
+.live-left {
+  border-bottom: 1px solid #28272b;
+}
+.live-logo {
+  display: flex;
+  align-items: center;
+}
+.live-logo img {
+  width: 43px;
+  height: 43px;
+}
+.live-row {
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+  align-items: center;
+  justify-content: space-between;
+}
+.live-score {
+  font-size: 1.4em;
+  color: var(--wht);
+  font-weight: 600;
+}
+.live-name {
+  margin-top: 8px;
+  font-size: 0.85em;
+  color: var(--wht);
+  white-space: nowrap;
+}
+
+.players {
+  margin: 1em 0;
+}
+.players-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 15px 10px;
+  background-color: #f2f2f2;
+  margin-bottom: 0.5em;
+  border-radius: 4px;
+}
+.players-item-image {
+  display: flex;
+  align-items: center;
+}
+.players-item-image img {
+  width: 36px;
+  height: 36px;
+  border-radius: 100px;
+}
+.players-item-desc {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.players-name {
+  font-size: 0.85em;
+}
+.players-position {
+  color: #adadad;
+  font-size: 0.75em;
+}
+
+.liveStatus {
+  position: absolute;
+  top: 0px;
+  padding: 0px 10px;
+  overflow: hidden;
+  right: 0px;
+  width: fit-content;
+  font-size: 0.65em;
+  background-color: var(--NBAsecondary);
+  color: var(--wht);
+}
+
+.manager {
+  background-color: var(--blk);
+  color: var(--wht);
+}
+
+.footer {
+  height: 5em;
+  width: 100%;
+}
+
+.homeTeam {
+  color: var(--NBAsecondary);
+}
+
+.awayTeam {
+  color: #7d7d7d;
+}
+
+@media only screen and (max-width: 600px) {
+  .dash {
+    border-radius: 0px;
+    height: 100%;
+    width: 100%;
+  }
+  .dash_right {
+    height: 130% !important;
+  }
+
+  .close {
+    position: sticky;
+    bottom: 50px;
+  }
+
+  .overlay-inner {
+    height: 90%;
+  }
+
+  .fetched-content {
+    height: calc(100% + 40px);
+  }
+}
+@-webkit-keyframes blinker {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+.isLive {
+  color: var(--wht);
+  text-decoration: blink;
+  -webkit-animation-name: blinker;
+  -webkit-animation-duration: 1.6s;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: ease-in-out;
+  -webkit-animation-direction: alternate;
+}
+</style>
+
+  <script>
+  window.console = window.console || function(t) {};
+</script>
+
+  
+  
+</head>
+<h1 class="mb-0">&nbsp;&nbsp;&nbsp;&nbsp;</h1>
+<h1 class="mb-0">&nbsp;&nbsp;&nbsp;&nbsp;</h1>
+<h1 class="mb-0">&nbsp;&nbsp;&nbsp;&nbsp;</h1>
+
+<body translate="no">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;500&display=swap" rel="stylesheet">
+
+<body>
+	<div class="dash">
+		<div class="overlay">
+			<div class="overlay-inner">
+				<div class="teams"></div>
+				<div class="close">
+					<span class="close-span">Select your team</span>
+				</div>
+			</div>
+
+		</div>
+
+		<div class="dash-left">
+			<!-- 			<div class="search">	
+			<form action="" class="search_form">
+				<input type="text" class="search_input">
+			</form>
+			</div> -->
+
+			<div class="logo"><img src="" alt=""></div>
+			<div class="team_nav"></div>
+		</div>
+		<div class="dash-right">
+
+			<div class="fetched_info">
+				<div class="nav">
+					<ul class="nav-items">
+						<li class="nav-item nav-item-active" data-type="overview">Overview</li>
+						<li class="nav-item" data-type="games">Games</li>
+						<li class="nav-item" data-type="players">Players</li>
+					</ul>
+				</div>
+				<div class="fetched-content">
+					<div class="content data-overview content-active">
+
+						<div class="live">
+							<!-- 							<div class="live-item">
+								<div class="live-left live-row">
+									<div class="live-flex">
+										<div class="live-logo"><img src="https://www.thesportsdb.com/images/media/team/badge/qrtuxq1422919040.png" alt=""></div>
+										<div class="live-name">Suns</div>
+									</div>
+									<div class="live-score">104</div>
+								</div>
+								<div class="live-center">
+									<div class="live-status">FT</div>
+								</div>
+								<div class="live-right live-row">
+									<div class="live-score">103</div>
+									<div class="live-flex">
+										<div class="live-logo"><img src="https://www.thesportsdb.com/images/media/team/badge/qrtuxq1422919040.png" alt=""></div>
+										<div class="live-name">Suns</div>
+									</div>
+								</div>
+							</div> -->
+						</div>
+						<div class="upcoming_game">
+							<!-- 							<div class="upcoming_game-item">
+								<span class="upcoming_game-item-headline">Bucks @ Atlanta</span>
+								<span class="upcoming_game-item-time">2019-10-12</span>
+							</div> -->
+						</div>
+						<div class="o_games-hdr">Last five games</div>
+						<div class="o_games-items games-flex">
+							<!-- 								<span class="o_games-item">
+									<span class="o_games-item-home o_game">
+										<span class="o_team">Lakers</span> <span class="o_score">137</span>
+									</span>
+									<span class="o_games-item-home o_game">
+										<span class="o_team">Clippers</span> <span class="o_score">113</span>
+									</span>
+								</span> -->
+						</div>
+						<div class="o_games-hdr">Team Profile</div>
+						<div class="o_desc">
+
+						</div>
+					</div>
+					<div class="content data-games">
+						<div class="o_games-hdr schedule-hdr">Schedule</div>
+						<div class="g_schedule-games games-flex"></div>
+						<div class="o_games-hdr">Recent games</div>
+						<div class="g_games-items games-flex"></div>
+					</div>
+					<div class="content data-players">
+						<div class="players games-flex">
+							<!-- 							<div class="players-item">
+								
+							</div> -->
+						</div>
+					</div>
+					<div class="footer"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+    <script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-2c7831bb44f98c1391d6a4ffda0e1fd302503391ca806e7fcc7b9b87197aec26.js"></script>
+
+  
+      <script id="rendered-js" >
+"use strict;";
+let API_KEY = `40130162`;
+let lang = navigator.language;
+const teamContainer = document.querySelector(".teams");
+const overlay = document.querySelector(".overlay");
+const logo = document.querySelector(".logo");
+const spanClose = document.querySelector(".close-span");
+const closebtn = document.querySelector(".close");
+const rightDash = document.querySelector(".dash-right");
+const fetchedInfo = document.querySelector(".fetched_info");
+const navContainer = document.querySelector(".nav-items");
+const navItem = document.querySelectorAll(".nav-item");
+const contentTabs = document.querySelectorAll(".content");
+const O_recentGames = document.querySelector(".o_games-items");
+const G_recentGames = document.querySelector(".g_games-items");
+const O_desc = document.querySelector(".o_desc");
+const upcomingGame = document.querySelector(".upcoming_game");
+const G_scheduledGames = document.querySelector(".g_schedule-games");
+const scheduleHdr = document.querySelector(".schedule-hdr");
+const liveContainer = document.querySelector(".live");
+const playersList = document.querySelector(".players");
+const btnStart = document.querySelector(".notice-btn");
+const teamNav = document.querySelector(".team_nav");
+
+let clickedTeam = [];
+(async () => {
+  console.log("skeletonLoad");
+  try {
+    const url = `https://www.thesportsdb.com/api/v1/json/${API_KEY}/lookup_all_teams.php?id=4387`;
+    const da = await fetch(url);
+    const res = await da.json();
+    const teamResult = res.teams;
+    for (const prop in teamResult) {
+      const div = document.createElement("div");
+
+      div.classList.add("teams-item");
+      div.teamID = teamResult[prop].idTeam;
+      div.addEventListener("click", selectedTeam);
+      const mockup = `
+					<span class="teams-item-logo"><img src="${teamResult[prop].strTeamBadge}" alt=""></span>
+					<span class="teams-item-info">
+					<span class="teams-item-short">${teamResult[prop].strTeamShort}</span>
+					<span class="teams-item-name">${teamResult[prop].strTeam}</span>
+					</span>
+
+				`;
+      div.innerHTML = mockup;
+      teamContainer.append(div);
+    }
+  } catch (err) {
+    console.log(err);
+  }
+})();
+
+function selectedTeam(e) {
+  const clicked = e.target.closest(".teams-item");
+  clickedTeam.unshift(clicked.teamID);
+
+  if (!clicked) return;
+  if (clicked.teamID === clickedTeam[0]) {
+    clicked.style.backgroundColor = "var(--blk)"; // needs to be fixed
+    console.log(clicked.teamID, clickedTeam[0]);
+  }
+
+  teamInfoGet(clicked.teamID);
+  closebtn.style.backgroundColor = "var(--blk)";
+  closebtn.style.cursor = "pointer";
+}
+
+// // team specific overall INFORMATION
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+async function teamInfoGet(teamID) {
+  try {
+    const data = await fetch(
+    `https://www.thesportsdb.com/api/v1/json/${API_KEY}/lookupteam.php?id=${teamID}`);
+
+    const res = await data.json();
+    const team = res.teams[0];
+    const teamNav = document.querySelector(".team_nav");
+    const mockup = `<span class="team_nav-span">
+					<span class="team_nav-icon"><img src="${team.strTeamBadge}" alt=""></span>
+					<span class="team_nav-short">${team.strTeamShort}</span>
+				</span>`;
+    teamNav.innerHTML = mockup;
+    spanClose.innerHTML = `<span class="team-selected_close">View ${team.strTeam}</span>`;
+    closebtn.addEventListener("click", () => {
+      overlay.classList.remove("active_overlay");
+    }); 
+    // lay info
+    teamDesc(team.idTeam);
+    nextGame(team.idTeam);
+    previousGames(team.idTeam);
+    teamVisuals(team.idTeam);
+    scheduledGames(team.idTeam);
+    teamPlayers(team.idTeam);
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+// temp ====================
+window.addEventListener("load", () => {
+  overlay.classList.add("active_overlay");
+});
+btnStart.addEventListener("click", () => {
+  overlay.classList.add("active_overlay");
+});
+teamNav.addEventListener("click", () => {
+  overlay.classList.add("active_overlay");
+});
+logo.addEventListener("click", () => {
+  overlay.classList.add("active_overlay");
+});
+// // team specific HEADER IMAGE
+async function teamVisuals(id) {
+  try {
+    const data = await fetch(
+    `https://www.thesportsdb.com/api/v1/json/${API_KEY}/lookupteam.php?id=${id}`);
+
+    const res = await data.json();
+    const team = res.teams[0];
+    const divHdr = document.createElement("div");
+    rightDash.innerHTML = "";
+    divHdr.classList.add("hdr");
+    divHdr.style.backgroundImage = `url('${team.strStadiumThumb}')`;
+    rightDash.append(divHdr);
+    fetchedInfo.style.display = "block";
+    rightDash.append(fetchedInfo);
+    navContainer.addEventListener("click", fetchedTabs);
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+// team specific 5 Previous Games
+
+async function previousGames(gameID) {
+  try {
+    const data = await fetch(
+    `https://www.thesportsdb.com/api/v1/json/${API_KEY}/eventslast.php?id=${gameID}`);
+
+    const res = await data.json();
+    const games = res.results;
+    O_recentGames.innerHTML = "";
+    G_recentGames.innerHTML = "";
+    for (const prop in games) {
+      // will be used to create an overlay with game specific Details
+      // console.log(`${games[prop].idEvent}`);
+    }
+    games.forEach(game => {
+      const mockup = `<span class="o_games-item">
+									<span class="o_games-item-home o_game" style='${
+      game.intHomeScore > game.intAwayScore ?
+      "font-weight:500" :
+      "font-weight:100"
+      };'>
+										<span class="o_team">${game.strHomeTeam}</span> <span class="o_score">${
+      game.intHomeScore
+      }</span>
+									</span>
+									<span class="o_games-item-home o_game" style='${
+      game.intHomeScore < game.intAwayScore ?
+      "font-weight:500" :
+      "font-weight:100"
+      };'>
+										<span class="o_team">${game.strAwayTeam}</span> <span class="o_score">${
+      game.intAwayScore
+      }</span>
+									</span>
+								</span> `;
+
+      O_recentGames.insertAdjacentHTML("afterbegin", mockup);
+      G_recentGames.insertAdjacentHTML("afterbegin", mockup);
+    });
+  } catch (err) {}
+}
+
+// team specific NEXT GAME
+async function nextGame(game) {
+  try {
+    const data = await fetch(
+    `https://www.thesportsdb.com/api/v1/json/${API_KEY}/eventsnext.php?id=${game}`);
+
+    const res = await data.json();
+    upcomingGame.innerHTML = "";
+    if (res.events == null) {
+      upcomingGame.style.display = "none";
+      liveContainer.style.display = "none";
+    } else {
+      upcomingGame.style.display = "block";
+      const next = res.events[0];
+      console.log(next);
+      verifyLiveGame(next.idEvent);
+      const date = next.strTimestamp;
+      const dateLocal = new Date(date);
+      const localTime = dateLocal.toLocaleDateString(`${lang}`, {
+        weekday: "long",
+        hour: "numeric",
+        minute: "numeric" });
+
+
+      const mockup = `<div class="upcoming_game-item">
+								<span class="upcoming_game-item-headline">${next.strEventAlternate}</span>
+								<span class="upcoming_game-item-time">${localTime}</span>
+							</div>`;
+      upcomingGame.style.backgroundImage = `url("${
+      next.strThumb ?
+      next.strThumb :
+      "https://assets.codepen.io/2629920/photo-1504450758481-7338eba7524a.jpeg"
+      }")`;
+      upcomingGame.innerHTML = mockup;
+    }
+  } catch (err) {}
+}
+
+// TEAM DESC
+
+async function teamDesc(id) {
+  try {
+    const data = await fetch(
+    `https://www.thesportsdb.com/api/v1/json/${API_KEY}/lookupteam.php?id=${id}`);
+
+    const res = await data.json();
+    const team = res.teams[0];
+    O_desc.innerHTML = "";
+    const mockup = `<span class="o_desc-span">${team.strDescriptionEN}</span>`;
+    O_desc.insertAdjacentHTML("afterbegin", mockup);
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+// SCHEDULEDgAMES
+
+async function scheduledGames(teamID) {
+  try {
+    const data = await fetch(
+    `https://www.thesportsdb.com/api/v1/json/${API_KEY}/eventsnext.php?id=${teamID}`);
+
+    const res = await data.json();
+    console.log(res);
+    G_scheduledGames.innerHTML = "";
+    if (res.events === null) return scheduleHdr.style.display = "none";else
+    {
+      scheduleHdr.style.display = "block";
+      res.events.forEach(event => {
+        const date = event.strTimestamp;
+        const dateLocal = new Date(date);
+        const localTime = dateLocal.toLocaleDateString(`${lang}`, {
+          weekday: "long",
+          hour: "numeric",
+          minute: "numeric",
+          month: "long",
+          day: "numeric" });
+
+        const mockup = `<div class="schedule-game">
+								<span class="schedule-game-TV">${
+        event.strTVStation ? `Watch it on ${event.strTVStation}` : ""
+        }</span>
+								<div class="schedule-game-left">
+									<span class="o_games-item-home o_game">
+										<span class="o_team">${event.strHomeTeam} <span class="homeTeam">H</span></span>
+									</span>
+									<span class="o_games-item-home o_game">
+										<span class="o_team">${event.strAwayTeam} <span class="awayTeam">A</span></span>
+									</span>
+								</div>
+								<div class="schedule-game-right">
+									<div class="schedule-game-time">${
+        event.intHomeScore ? event.intHomeScore : localTime
+        }</div>
+									<div class="schedule-game-date">${
+        event.intAwayScore ? event.intAwayScore : ""
+        }</div>
+								</div>
+
+							</div>`;
+        if (event.intHomeScore) {
+          scheduleHdr.style.display = "none";
+        }
+        G_scheduledGames.insertAdjacentHTML("afterbegin", mockup);
+      });
+    }
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+// List all players in team
+
+async function teamPlayers(id) {
+  try {
+    const data = await fetch(
+    `https://www.thesportsdb.com/api/v1/json/${API_KEY}/lookup_all_players.php?id=${id}`);
+
+    const res = await data.json();
+    for (const prop in res) {
+      const players = res[prop];
+      playersList.innerHTML = "";
+      players.forEach(player => {
+        const div = document.createElement("div");
+        div.classList.add("players-item");
+        if (player.strPosition === "Manager") {
+          div.classList.add("manager");
+        }
+        const mockup = `<div class="players-item-image"><img src="${player.strThumb}" alt=""></div>
+								<div class="players-item-desc">
+									<div class="players-name">${player.strPlayer}</div>
+									<div class="players-position">${player.strPosition}</div>
+								</div>`;
+        div.innerHTML = mockup;
+        playersList.append(div);
+      });
+    }
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+// LIVE GAME
+
+async function verifyLiveGame(id) {
+  try {
+    const data = await fetch(
+    `https://www.thesportsdb.com/api/v2/json/${API_KEY}/livescore.php?l=4387`);
+
+    const res = await data.json();
+    liveContainer.innerHTML = "";
+    res.events.forEach(e => {
+      if (id !== e.idEvent) return;
+      if (e.strStatus === "NS") return;else
+      {
+        upcomingGame.style.display = "none";
+        const div = document.createElement("div");
+        div.classList.add("live-item");
+        div.teamID = e.idEvent;
+        const mockup = `
+			
+			<div class="live-left live-row">
+			<div class="liveStatus"><span class="${e.strStatus !== "FT" ? "isLive" : ""}">${
+        e.strStatus === "FT" ? "Final" : `Live | ${e.strProgress}(${e.strStatus})`
+        }</span></div>
+									<div class="live-flex">
+										<div class="live-logo"><img src="${e.strHomeTeamBadge}" alt=""></div>
+										<div class="live-name">${e.strHomeTeam}</div>
+									</div>
+									<div class="live-score">${e.intHomeScore}</div>
+								</div>
+								<div class="live-right live-row">
+								<div class="live-flex">
+										<div class="live-logo"><img src="${e.strAwayTeamBadge}" alt=""></div>
+										<div class="live-name">${e.strAwayTeam}</div>
+									</div>
+									<div class="live-score">${e.intAwayScore}</div>
+									
+								</div>
+								
+								`;
+        // div.addEventListener("click", liveDetails);
+        div.innerHTML = mockup;
+        liveContainer.append(div);
+      }
+    });
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+function fetchedTabs(e) {
+  const clicked = e.target.closest(".nav-item");
+  if (!clicked) return;
+  navItem.forEach(i => i.classList.remove("nav-item-active"));
+  contentTabs.forEach(tab => tab.classList.remove("content-active"));
+  clicked.classList.add("nav-item-active");
+  const dataSet = clicked.dataset.type;
+  document.querySelector(`.data-${dataSet}`).classList.add("content-active");
+}
+//# sourceURL=pen.js
+    </script>
+
+  
+</body>
+
+</html>
