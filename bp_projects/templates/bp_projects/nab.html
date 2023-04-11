@@ -23,6 +23,7 @@ nav {
   border: 2px solid #EBECF1;
   border-radius: 30px;
   animation: slide-in 1s ease-out;
+  z-index: 9999;
 }
 
 ul {
@@ -76,7 +77,6 @@ ul li:hover a {
 ul li:hover ul {
   visibility: visible;
   opacity: 1;
-  box-shadow: 0px 3px 5px 2px #EBECF1;
 }
 ul li:hover ul li a {
   color: #F9F8FD;
@@ -154,7 +154,7 @@ html {
 }
 
 body {
-
+  padding: 0px 420px;
   align-items: center;
   justify-content: center;
   height: 100vh;
@@ -167,7 +167,7 @@ body {
   --blk: #000;
   --primary: #28272b;
   --poppins: "Poppins", sans-serif;
-  --NBAprimary: #17408b;
+  --NBAprimary: #17408b00;
   --NBAsecondary: #c9082a;
 }
 
@@ -706,9 +706,8 @@ body {
   
   
 </head>
-<h1 class="mb-0">&nbsp;&nbsp;&nbsp;&nbsp;</h1>
-<h1 class="mb-0">&nbsp;&nbsp;&nbsp;&nbsp;</h1>
-<h1 class="mb-0">&nbsp;&nbsp;&nbsp;&nbsp;</h1>
+
+
 
 <body translate="no">
   <link rel="preconnect" href="https://fonts.gstatic.com">
