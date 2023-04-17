@@ -24,10 +24,6 @@ def index():
 def game():
     return render_template("game.html")
 
-@app_projects.route('/AB/')
-def AB():
-    return render_template("AB.html")
-
 @app_projects.route('/three/')
 def three():
     return render_template("three.html")
@@ -47,3 +43,7 @@ def about():
 @app_projects.route('/nab/')
 def nab():
     return render_template("nab.html")
+
+@app_projects.route('/nap/')
+def nap():
+    return render_template("nap.html")
