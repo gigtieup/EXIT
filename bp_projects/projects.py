@@ -47,3 +47,7 @@ def about():
 @app_projects.route('/nab/')
 def nab():
     return render_template("nab.html")
+
+@app_projects.route('/gamble/')
+def gamble():
+    return render_template("gamble.html")

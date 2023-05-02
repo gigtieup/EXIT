@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Load Data Example</title>
+    <script>
+      function loadData() {
+        const xhr = new XMLHttpRequest();
+        xhr.open('GET', 'https://www.balldontlie.io/api/v1/season_averages?player_ids[]=237');
+        xhr.onload = function() {
+          if (xhr.status === 200) {
+            const data = JSON.parse(xhr.responseText);
+            const dataDiv = document.getElementById('data');
+            dataDiv.innerHTML = JSON.stringify(data);
+          }
+        };
+        xhr.send();
+      }
+    </script>
+  </head>
+  <body>
+    <button onclick="loadData()">Load Data</button>
+    <div id="stats"></div>
+  </body>
+</html>
