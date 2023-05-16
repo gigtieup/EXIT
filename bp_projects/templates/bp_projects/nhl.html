@@ -87,32 +87,33 @@
         return;
       }
 
-      const apiUrl = `https://statsapi.web.nhl.com/api/v1/players?name=${encodeURIComponent(playerName)}`;
+      const apiUrl = `https://api.statsapi.web.nhl.com/api/v1/teams`;
 
       fetch(apiUrl)
         .then(response => response.json())
         .then(data => {
-          const player = data.people[0];
+          const teams = data.teams;
+          const player = teams.find(team => team.name === playerName);
           if (!player) {
             document.getElementById('player-details').innerHTML = 'Player not found.';
             return;
           }
 
           const playerId = player.id;
-          const playerStatsUrl = `https://statsapi.web.nhl.com/api/v1/people/${playerId}/stats?stats=statsSingleSeason`;
+          const playerStatsUrl = `https://api.statsapi.web.nhl.com/api/v1/teams/${playerId}/stats`;
 
           fetch(playerStatsUrl)
             .then(response => response.json())
             .then(data => {
               const stats = data.stats[0].splits[0].stat;
               const playerDetails = `
-                <li>Name: ${player.fullName}</li>
-                <li>Team: ${player.currentTeam.name}</li>
-                <li>Position: ${player.primaryPosition.name}</li>
-                <li>Goals: ${stats.goals}</li>
-                <li>Assists: ${stats.assists}</li>
-                <li>Points: ${stats.points}</li>
-          `;
+                <li>Team: ${player.name}</li>
+                <li>Abbreviation: ${player.abbreviation}</li>
+                <li>Wins: ${stats.wins}</li>
+                <li>Losses: ${stats.losses}</li>
+                <li>OT Losses: ${stats.ot}</li
+                <li>Points: ${stats.pts}</li>
+                `;
           document.getElementById('player-details').innerHTML = playerDetails;
         })
         .catch(error => {
@@ -125,6 +126,8 @@
       console.error(error);
     });
 }
-  </script>
+</script>
 </body>
 </html>
+```
+
