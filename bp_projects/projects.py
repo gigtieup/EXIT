@@ -47,7 +47,3 @@ def nab():
 @app_projects.route('/nap/')
 def nap():
     return render_template("nap.html")
-
-@app_projects.route('/tep/')
-def tep():
-    return render_template("tep.html")
