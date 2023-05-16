@@ -47,3 +47,7 @@ def nab():
 @app_projects.route('/nap/')
 def nap():
     return render_template("nap.html")
+
+@app_projects.route('/help/')
+def help():
+    return render_template("help.html")
