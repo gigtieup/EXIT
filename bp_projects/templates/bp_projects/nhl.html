@@ -87,47 +87,51 @@
         return;
       }
 
-      const apiUrl = `https://api.statsapi.web.nhl.com/api/v1/teams`;
+      const apiUrl = `https://statsapi.web.nhl.com/api/v1/players?name=${encodeURIComponent(playerName)}`;
 
       fetch(apiUrl)
         .then(response => response.json())
         .then(data => {
-          const teams = data.teams;
-          const player = teams.find(team => team.name === playerName);
+          const player = data.data[0];
           if (!player) {
             document.getElementById('player-details').innerHTML = 'Player not found.';
             return;
           }
 
           const playerId = player.id;
-          const playerStatsUrl = `https://api.statsapi.web.nhl.com/api/v1/teams/${playerId}/stats`;
+          const playerApiUrl = `https://statsapi.web.nhl.com/api/v1/people/${playerId}`;
 
-          fetch(playerStatsUrl)
+          fetch(playerApiUrl)
             .then(response => response.json())
             .then(data => {
-              const stats = data.stats[0].splits[0].stat;
+              const player = data.people[0];
+              if (!player) {
+                document.getElementById('player-details').innerHTML = 'Player not found.';
+                return;
+              }
+
               const playerDetails = `
-                <li>Team: ${player.name}</li>
-                <li>Abbreviation: ${player.abbreviation}</li>
-                <li>Wins: ${stats.wins}</li>
-                <li>Losses: ${stats.losses}</li>
-                <li>OT Losses: ${stats.ot}</li
-                <li>Points: ${stats.pts}</li>
-                `;
-          document.getElementById('player-details').innerHTML = playerDetails;
+                <li>Name: ${player.fullName}</li>
+                <li>Position: ${player.primaryPosition.name}</li>
+                <li>Team: ${player.currentTeam.name}</li>
+                <li>Jersey Number: ${player.primaryNumber}</li>
+                <li>Birth Date: ${player.birthDate}</li>
+                <li>Birth City: ${player.birthCity}</li>
+                <li>Birth Country: ${player.birthCountry}</li>
+              `;
+              document.getElementById('player-details').innerHTML = playerDetails;
         })
         .catch(error => {
-          document.getElementById('player-details').innerHTML = 'Failed to fetch player stats.';
-          console.error(error);
+          console.error('Error:', error);
+          document.getElementById('player-details').innerHTML = 'An error occurred while fetching player data.';
         });
     })
     .catch(error => {
-      document.getElementById('player-details').innerHTML = 'Failed to fetch player information.';
-      console.error(error);
+      console.error('Error:', error);
+      document.getElementById('player-details').innerHTML = 'An error occurred while searching for the player.';
     });
 }
+
 </script>
 </body>
 </html>
-```
-
