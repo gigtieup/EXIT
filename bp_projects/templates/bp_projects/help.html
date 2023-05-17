@@ -1,11 +1,119 @@
-<html>
-    <body>
-    <script>
-        var timer = setTimeout(function() {
-            window.location='http://127.0.0.1:5000/projects/help/'
-        }, 11000);
-    </script>
-</body>
-</html>
+
 <!DOCTYPE html>
 <html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  
+
+
+
+
+  
+
+<style>
+body{
+  margin-top: 50px;
+}
+
+h1{
+  font-weight: 800 !important;
+  font-size: 50px;
+}
+
+h6{
+  color: #716f6f
+}
+
+.img-wrapper{
+  width: 500px;
+}
+
+img{
+  height: 100%;
+  width: 100%;
+}
+
+input, textarea, select{
+  background: #f7f9f8 !important;
+}
+
+.email-us{
+  text-decoration: underline;
+}
+
+label{
+  font-weight: 600;
+  color: #716f6f
+}
+
+button{
+  float: right;
+}
+button span{
+  margin-left: 8px;  
+}
+
+button i{
+  margin: 0px 8px;
+}
+</style>
+
+  <script>
+  window.console = window.console || function(t) {};
+</script>
+
+  
+  
+</head>
+
+<body translate="no">
+  <div class="container">
+  <div class="row">
+  <div class="col-md-6">
+    <h1>Let's get you</br> some help!</h1>
+    <h6>Have any issue? Send us an <span class="email-us">email.</span></h6>
+    <div class="img-wrapper">
+    <img src="https://i.ibb.co/bWfN3Qy/undraw-onboarding-o8mv-1.png" alt="undraw-onboarding-o8mv-1" border="0">
+      </div>
+  </div>
+  
+  <div class="col-md-6">
+    <form>
+  <div class="form-group">
+    <label for="list">Username</label>
+    <input type="text" class="form-control" id="list" aria-describedby="emailHelp">
+  </div>
+  <div class="form-group">
+    <label for="tags">Password</label>
+    <input type="text" class="form-control" id="tags">
+  </div>
+      
+    <div class="form-group">
+    <label for="describe">What seems to be your problem?</label>
+    <textarea type="text" class="form-control" id="describe" rows="5"></textarea>
+  </div>
+      
+      <div class="form-group">
+    <label for="exampleFormControlSelect1">Rate our website</label>
+    <select class="form-control" id="exampleFormControlSelect1">
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+    </select>
+  </div>
+            
+<button type="button" class="btn btn-primary"><span>Submit</span> <i class="fas fa-long-arrow-alt-right"></i></button>
+  </div>
+    
+  </div>
+</div>
+  
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js'></script>
+  
+  
+</body>
+
+</html>
