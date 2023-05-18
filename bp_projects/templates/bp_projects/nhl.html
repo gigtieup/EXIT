@@ -1,133 +1,77 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>NHL Player Statistics</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-    }
-
-    h2 {
-      margin-top: 20px;
-    }
-
-    label {
-      display: block;
-      margin-top: 10px;
-    }
-
-    input[type="text"] {
-      padding: 5px;
-      width: 200px;
-    }
-
-    button {
-      padding: 8px 16px;
-      background-color: #007bff;
-      color: #fff;
-      border: none;
-      cursor: pointer;
-    }
-
-    #results {
-      margin-top: 20px;
-    }
-
-    #results h3 {
-      margin-bottom: 5px;
-    }
-
-    #results ul {
-      list-style: none;
-      padding-left: 0;
-    }
-
-    #results li {
-      margin-bottom: 5px;
-    }
-  </style>
-</head>
-
-<body>
-  <h2>Search NHL Player Statistics</h2>
-  <label for="playerName">Player Name:</label>
-  <input type="text" id="playerName" placeholder="Enter player name">
-  <button onclick="searchPlayer()">Search</button>
-  <div id="results"></div>
-
-  <script>
-    const baseUrl = 'https://statsapi.web.nhl.com/api/v1/game/';
-    const resultsElement = document.getElementById('results');
-
-    function searchPlayer() {
-      const playerName = document.getElementById('playerName').value;
-      if (playerName.trim() === '') {
-        resultsElement.innerHTML = '<p>Please enter a player name.</p>';
-        return;
-      }
-
-      resultsElement.innerHTML = '<p>Loading player statistics...</p>';
-
-      fetchLiveGames()
-        .then(games => {
-          const playerId = findPlayerId(playerName, games);
-          if (playerId) {
-            const gameId = 'ID'; // Replace 'ID' with the appropriate game ID
-            fetchPlayerStats(playerId, gameId)
-              .then(stats => displayPlayerStats(playerName, stats))
-              .catch(error => {
-                console.error(error);
-                resultsElement.innerHTML = '<p>Error retrieving player statistics.</p>';
-              });
-          } else {
-            resultsElement.innerHTML = '<p>Player not found.</p>';
-          }
-        })
-        .catch(error => {
-          console.error(error);
-          resultsElement.innerHTML = '<p>Error retrieving live games data.</p>';
-        });
-    }
-
-    function fetchLiveGames() {
-      const apiUrl = `${baseUrl}live/feed/live`;
-      return fetch(apiUrl)
-        .then(response => response.json())
-        .then(data => data['gameData']['players']);
-    }
-
-    function findPlayerId(playerName, games) {
-      playerName = playerName.toLowerCase();
-      for (const game of games) {
-        for (const player of game) {
-          const fullName = `${player.firstName} ${player.lastName}`.toLowerCase();
-          if (fullName === playerName) {
-            return player.id;
-          }
+    <style>
+        body {
+            font-family: Arial, sans-serif;
         }
-      }
-      return null;
-    }
+        .search-container {
+            margin: 1em;
+        }
+        .player-data {
+            margin: 1em;
+            border: 1px solid #000;
+            padding: 1em;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <div class="search-container">
+        <input type="text" id="playerName" placeholder="Enter NHL player name (LAST NAME First Name)">
+        <button onclick="searchPlayer()">Search</button>
+    </div>
+    <div class="player-data" id="playerData">
+        <!-- Player data will be inserted here -->
+    </div>
 
-    function fetchPlayerStats(playerId, gameId) {
-      const apiUrl = `${baseUrl}${gameId}/feed/live`;
-      return fetch(apiUrl)
-        .then(response => response.json())
-        .then(data => data['gameData']['players'][playerId]['stats']);
-    }
+    <script>
+        async function searchPlayer() {
+            const playerName = document.getElementById('playerName').value;
+            const options = {
+                method: 'GET',
+                url: `https://hockey-live-sk-data.p.rapidapi.com/player/${playerName}/NHL`,
+                params: {
+                    key: 'b034f54d9ae5dab25f5cc385cca146d6'
+                },
+                headers: {
+                    name: 'SATAN Miroslav',
+                    'X-RapidAPI-Key': '3d86dd31a2mshca1f32e22e2396cp1f7302jsn610cf54ceeb6',
+                    'X-RapidAPI-Host': 'hockey-live-sk-data.p.rapidapi.com'
+                }
+            };
 
-    function displayPlayerStats(playerName, stats) {
-      let output = `<h3>${playerName}</h3>`;
-      output += '<ul>';
-      for (const stat in stats) {
-        output += `<li>${stat}: ${stats[stat]}</li>`;
-      }
-      output += '</ul>';
-      resultsElement.innerHTML = output;
-    }
-  </script>
+            try {
+                const response = await axios.request(options);
+                const data = response.data;
+
+                const playerDataElement = document.getElementById('playerData');
+                playerDataElement.innerHTML = ''; // Clear previous data
+
+                for (const key in data) {
+                    const value = data[key];
+                    if (typeof value === 'object' && value !== null) {
+                        // Handle nested object
+                        const nestedObjectElement = document.createElement('div');
+                        const title = document.createElement('h2');
+                        title.innerText = key;
+                        nestedObjectElement.appendChild(title);
+                        for (const nestedKey in value) {
+                            const nestedStats = document.createElement('p');
+                            nestedStats.innerText = `${nestedKey}: ${value[nestedKey]}`;
+                            nestedObjectElement.appendChild(nestedStats);
+                        }
+                        playerDataElement.appendChild(nestedObjectElement);
+                    } else {
+                        const stats = document.createElement('p');
+                        stats.innerText = `${key}: ${value}`;
+                        playerDataElement.appendChild(stats);
+                    }
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+    </script>
 </body>
-
 </html>
