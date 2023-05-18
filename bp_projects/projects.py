@@ -55,3 +55,11 @@ def tep():
 @app_projects.route('/help/')
 def help():
     return render_template("help.html")
+
+@app_projects.route('/signup/')
+def signup():
+    return render_template("signup.html")
+
+@app_projects.route('/acc/')
+def acc():
+    return render_template("acc.html")
