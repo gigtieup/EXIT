@@ -19,7 +19,7 @@
 <body>
     <div class="search-container">
         <input type="text" id="playerName" placeholder="Enter NHL player name (LAST NAME First Name)">
-        <button onclick="searchPlayer()">Search</button>
+        <button onclick="searchPlayer()">Search Player</button>
     </div>
     <div class="player-data" id="playerData">
         <!-- Player data will be inserted here -->
@@ -40,26 +40,41 @@
                     'X-RapidAPI-Host': 'hockey-live-sk-data.p.rapidapi.com'
                 }
             };
-
+    
             try {
                 const response = await axios.request(options);
                 const data = response.data;
-
+    
                 const playerDataElement = document.getElementById('playerData');
                 playerDataElement.innerHTML = ''; // Clear previous data
-
+    
                 for (const key in data) {
                     const value = data[key];
                     if (typeof value === 'object' && value !== null) {
-                        // Handle nested object
+                        // Handle first level nested object
                         const nestedObjectElement = document.createElement('div');
                         const title = document.createElement('h2');
                         title.innerText = key;
                         nestedObjectElement.appendChild(title);
                         for (const nestedKey in value) {
-                            const nestedStats = document.createElement('p');
-                            nestedStats.innerText = `${nestedKey}: ${value[nestedKey]}`;
-                            nestedObjectElement.appendChild(nestedStats);
+                            const nestedValue = value[nestedKey];
+                            if (typeof nestedValue === 'object' && nestedValue !== null) {
+                                // Handle second level nested object
+                                const secondNestedObjectElement = document.createElement('div');
+                                const secondTitle = document.createElement('h3');
+                                secondTitle.innerText = nestedKey;
+                                secondNestedObjectElement.appendChild(secondTitle);
+                                for (const secondNestedKey in nestedValue) {
+                                    const secondNestedStats = document.createElement('p');
+                                    secondNestedStats.innerText = `${secondNestedKey}: ${nestedValue[secondNestedKey]}`;
+                                    secondNestedObjectElement.appendChild(secondNestedStats);
+                                }
+                                nestedObjectElement.appendChild(secondNestedObjectElement);
+                            } else {
+                                const nestedStats = document.createElement('p');
+                                nestedStats.innerText = `${nestedKey}: ${nestedValue}`;
+                                nestedObjectElement.appendChild(nestedStats);
+                            }
                         }
                         playerDataElement.appendChild(nestedObjectElement);
                     } else {
@@ -73,5 +88,6 @@
             }
         }
     </script>
+    
 </body>
 </html>

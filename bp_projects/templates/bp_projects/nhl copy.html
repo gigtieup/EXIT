@@ -1,138 +1,77 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>NHL Player Stats</title>
-  <style>
-    body {
-      background: #F9F8FD;
-      font-family: Arial, sans-serif;
-      padding: 20px;
-    }
-
-    h1 {
-      font-size: 24px;
-      text-align: center;
-      margin-bottom: 20px;
-    }
-
-    .search-container {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-
-    .search-container input[type=text] {
-      padding: 8px;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      font-size: 16px;
-      width: 300px;
-      max-width: 100%;
-    }
-
-    .search-container button {
-      padding: 8px 16px;
-      background-color: #4CAF50;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 16px;
-    }
-
-    .search-container button:hover {
-      background-color: #45a049;
-    }
-
-    .player-info {
-      max-width: 600px;
-      margin: 0 auto;
-    }
-
-    .player-info h2 {
-      font-size: 18px;
-      margin-bottom: 10px;
-    }
-
-    .player-info ul {
-      list-style-type: none;
-      padding: 0;
-    }
-
-    .player-info ul li {
-      margin-bottom: 5px;
-    }
-  </style>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .search-container {
+            margin: 1em;
+        }
+        .player-data {
+            margin: 1em;
+            border: 1px solid #000;
+            padding: 1em;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
-
 <body>
-  <h1>NHL Player Stats</h1>
+    <div class="search-container">
+        <input type="text" id="playerName" placeholder="Enter NHL player name (LAST NAME First Name)">
+        <button onclick="searchPlayer()">Search</button>
+    </div>
+    <div class="player-data" id="playerData">
+        <!-- Player data will be inserted here -->
+    </div>
 
-  <div class="search-container">
-    <input type="text" id="player-name" placeholder="Enter player name">
-    <button onclick="searchPlayer()">Search</button>
-  </div>
+    <script>
+        async function searchPlayer() {
+            const playerName = document.getElementById('playerName').value;
+            const options = {
+                method: 'GET',
+                url: `https://hockey-live-sk-data.p.rapidapi.com/player/${playerName}/NHL`,
+                params: {
+                    key: 'b034f54d9ae5dab25f5cc385cca146d6'
+                },
+                headers: {
+                    name: 'SATAN Miroslav',
+                    'X-RapidAPI-Key': '3d86dd31a2mshca1f32e22e2396cp1f7302jsn610cf54ceeb6',
+                    'X-RapidAPI-Host': 'hockey-live-sk-data.p.rapidapi.com'
+                }
+            };
 
-  <div class="player-info">
-    <h2>Player Information:</h2>
-    <ul id="player-details"></ul>
-  </div>
+            try {
+                const response = await axios.request(options);
+                const data = response.data;
 
-  <script>
-    function searchPlayer() {
-      const playerName = document.getElementById('player-name').value.trim();
-      if (playerName === '') {
-        alert('Please enter a player name.');
-        return;
-      }
+                const playerDataElement = document.getElementById('playerData');
+                playerDataElement.innerHTML = ''; // Clear previous data
 
-      const apiUrl = `https://statsapi.web.nhl.com/api/v1/players?name=${encodeURIComponent(playerName)}`;
-
-      fetch(apiUrl)
-        .then(response => response.json())
-        .then(data => {
-          const player = data.data[0];
-          if (!player) {
-            document.getElementById('player-details').innerHTML = 'Player not found.';
-            return;
-          }
-
-          const playerId = player.id;
-          const playerApiUrl = `https://statsapi.web.nhl.com/api/v1/people/${playerId}`;
-
-          fetch(playerApiUrl)
-            .then(response => response.json())
-            .then(data => {
-              const player = data.people[0];
-              if (!player) {
-                document.getElementById('player-details').innerHTML = 'Player not found.';
-                return;
-              }
-
-              const playerDetails = `
-                <li>Name: ${player.fullName}</li>
-                <li>Position: ${player.primaryPosition.name}</li>
-                <li>Team: ${player.currentTeam.name}</li>
-                <li>Jersey Number: ${player.primaryNumber}</li>
-                <li>Birth Date: ${player.birthDate}</li>
-                <li>Birth City: ${player.birthCity}</li>
-                <li>Birth Country: ${player.birthCountry}</li>
-              `;
-              document.getElementById('player-details').innerHTML = playerDetails;
-        })
-        .catch(error => {
-          console.error('Error:', error);
-          document.getElementById('player-details').innerHTML = 'An error occurred while fetching player data.';
-        });
-    })
-    .catch(error => {
-      console.error('Error:', error);
-      document.getElementById('player-details').innerHTML = 'An error occurred while searching for the player.';
-    });
-}
-
-</script>
+                for (const key in data) {
+                    const value = data[key];
+                    if (typeof value === 'object' && value !== null) {
+                        // Handle nested object
+                        const nestedObjectElement = document.createElement('div');
+                        const title = document.createElement('h2');
+                        title.innerText = key;
+                        nestedObjectElement.appendChild(title);
+                        for (const nestedKey in value) {
+                            const nestedStats = document.createElement('p');
+                            nestedStats.innerText = `${nestedKey}: ${value[nestedKey]}`;
+                            nestedObjectElement.appendChild(nestedStats);
+                        }
+                        playerDataElement.appendChild(nestedObjectElement);
+                    } else {
+                        const stats = document.createElement('p');
+                        stats.innerText = `${key}: ${value}`;
+                        playerDataElement.appendChild(stats);
+                    }
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+    </script>
 </body>
 </html>
-
