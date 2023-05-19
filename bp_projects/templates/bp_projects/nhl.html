@@ -1,130 +1,118 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>NHL Player Stats</title>
-  <style>
-    body {
-      background: #F9F8FD;
-      font-family: Arial, sans-serif;
-      padding: 20px;
-    }
-
-    h1 {
-      font-size: 24px;
-      text-align: center;
-      margin-bottom: 20px;
-    }
-
-    .search-container {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-
-    .search-container input[type=text] {
-      padding: 8px;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      font-size: 16px;
-      width: 300px;
-      max-width: 100%;
-    }
-
-    .search-container button {
-      padding: 8px 16px;
-      background-color: #4CAF50;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 16px;
-    }
-
-    .search-container button:hover {
-      background-color: #45a049;
-    }
-
-    .player-info {
-      max-width: 600px;
-      margin: 0 auto;
-    }
-
-    .player-info h2 {
-      font-size: 18px;
-      margin-bottom: 10px;
-    }
-
-    .player-info ul {
-      list-style-type: none;
-      padding: 0;
-    }
-
-    .player-info ul li {
-      margin-bottom: 5px;
-    }
-  </style>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #b6afaf; /* add a light grey background */
+            text-align: center; /* center all text */
+        }
+        .search-container {
+            margin: 1em;
+            display: flex; /* create a flexible layout */
+            justify-content: center; /* center the child items */
+            align-items: center; /* align items vertically */
+        }
+        .search-container input {
+            width: 50%; /* make the input larger */
+            padding: 10px; /* add some padding */
+            font-size: 1em; /* make the text larger */
+        }
+        .player-data {
+            margin: 1em auto; /* center the div */
+            border: 1px solid #000;
+            padding: 1em;
+            width: 50%; /* specify a width */
+            background-color: #ffffff; /* add a white background */
+        }
+        .title {
+            font-size: 2em; /* make the title larger */
+            color: #ff0000; /* make the title blue */
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
-
 <body>
-  <h1>NHL Player Stats</h1>
+    <h1 class="title">NHL Player Statistics</h1> <!-- Add the title -->
+    <div class="search-container">
+        <input type="text" id="playerName" placeholder="Enter NHL player name (LAST NAME First Name)">
+        <button onclick="searchPlayer()">Search Player</button>
+    </div>
+    <div class="player-data" id="playerData">
+        <!-- Player data will be inserted here -->
+    </div>
+</body>
 
-  <div class="search-container">
-    <input type="text" id="player-name" placeholder="Enter player name">
-    <button onclick="searchPlayer()">Search</button>
-  </div>
+<script>
+    async function searchPlayer() {
+        const playerName = document.getElementById('playerName').value;
+        const options = {
+            method: 'GET',
+            url: `https://hockey-live-sk-data.p.rapidapi.com/player/${playerName}/NHL`,
+            params: {
+                key: 'b034f54d9ae5dab25f5cc385cca146d6'
+            },
+            headers: {
+                name: 'SATAN Miroslav',
+                'X-RapidAPI-Key': '3d86dd31a2mshca1f32e22e2396cp1f7302jsn610cf54ceeb6',
+                'X-RapidAPI-Host': 'hockey-live-sk-data.p.rapidapi.com'
+            }
+        };
 
-  <div class="player-info">
-    <h2>Player Information:</h2>
-    <ul id="player-details"></ul>
-  </div>
+        try {
+            const response = await axios.request(options);
+            let data = response.data;
 
-  <script>
-    function searchPlayer() {
-      const playerName = document.getElementById('player-name').value.trim();
-      if (playerName === '') {
-        alert('Please enter a player name.');
-        return;
-      }
+            // Parse string data into JSON object
+            if (typeof data === 'string') {
+                data = JSON.parse(data);
+            }
 
-      const apiUrl = `https://statsapi.web.nhl.com/api/v1/players?name=${encodeURIComponent(playerName)}`;
+            const playerDataElement = document.getElementById('playerData');
+            playerDataElement.innerHTML = ''; // Clear previous data
 
-      fetch(apiUrl)
-        .then(response => response.json())
-        .then(data => {
-          const player = data.people[0];
-          if (!player) {
-            document.getElementById('player-details').innerHTML = 'Player not found.';
-            return;
-          }
+            for (const key in data) {
+                const value = data[key];
+                if (typeof value === 'object' && value !== null) {
+                    // Handle first level nested object
+                    const nestedObjectElement = document.createElement('div');
+                    const title = document.createElement('h2');
+                    title.innerText = key;
+                    nestedObjectElement.appendChild(title);
+                    for (const nestedKey in value) {
+                        const nestedValue = value[nestedKey];
+                        if (typeof nestedValue === 'object' && nestedValue !== null) {
+                            // Handle second level nested object
+                            const secondNestedObjectElement = document.createElement('div');
+                            const secondTitle = document.createElement('h3');
+                            secondTitle.innerText = nestedKey;
+                            secondNestedObjectElement.appendChild(secondTitle);
+                            for (const secondNestedKey in nestedValue) {
+                                const secondNestedStats = document.createElement('p');
+                                secondNestedStats.innerText = `${secondNestedKey}: ${nestedValue[secondNestedKey]}`;
+                                secondNestedObjectElement.appendChild(secondNestedStats);
+                            }
+                            nestedObjectElement.appendChild(secondNestedObjectElement);
+                        } else {
+                            const nestedStats = document.createElement('p');
+                            nestedStats.innerText = `${nestedKey}: ${nestedValue}`;
+                            nestedObjectElement.appendChild(nestedStats);
+                        }
+                    }
+                    playerDataElement.appendChild(nestedObjectElement);
+                } else {
+                    const stats = document.createElement('p');
+                    stats.innerText = `${key}: ${value}`;
+                    playerDataElement.appendChild(stats);
+                }
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    }
+</script>
 
-          const playerId = player.id;
-          const playerStatsUrl = `https://statsapi.web.nhl.com/api/v1/people/${playerId}/stats?stats=statsSingleSeason`;
 
-          fetch(playerStatsUrl)
-            .then(response => response.json())
-            .then(data => {
-              const stats = data.stats[0].splits[0].stat;
-              const playerDetails = `
-                <li>Name: ${player.fullName}</li>
-                <li>Team: ${player.currentTeam.name}</li>
-                <li>Position: ${player.primaryPosition.name}</li>
-                <li>Goals: ${stats.goals}</li>
-                <li>Assists: ${stats.assists}</li>
-                <li>Points: ${stats.points}</li>
-          `;
-          document.getElementById('player-details').innerHTML = playerDetails;
-        })
-        .catch(error => {
-          document.getElementById('player-details').innerHTML = 'Failed to fetch player stats.';
-          console.error(error);
-        });
-    })
-    .catch(error => {
-      document.getElementById('player-details').innerHTML = 'Failed to fetch player information.';
-      console.error(error);
-    });
-}
-  </script>
+    
 </body>
 </html>

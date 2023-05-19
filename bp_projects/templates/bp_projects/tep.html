@@ -338,32 +338,44 @@ li.sidebar-item a.active{
                                     <a class="gray" onclick="changeIframeLi()">
                                         GAMEBOARD
                                     </a>
-    
+                                    <li class="sidebar-item clearfix">
+
+                                        <a  class="gray active" onclick="changeIfra()">
+                                            NHL
+                                        </a>
+        
+                                    </li>
+                                    <li class="sidebar-item clearfix">
+        
+                                        <a class="gray" onclick="changeIfr()">
+                                            TEAM STATS
+                                        </a>
+        
+                                    </li>
+                                    <li class="sidebar-item clearfix">
+        
+                                        <a class="gray" onclick="changeIf()">
+                                            GAMEBOARD
+                                        </a>
                                 </li>
                                 <li class="sidebar-item clearfix">
     
-                                    <a href="/issues" class="gray ">
-                                        Issues
+                                    <a class="gray" onclick="changeIframeL()">
+                                        ABOUT
                                     </a>
     
                                 </li>
                                 <li class="sidebar-item clearfix">
     
-                                    <a href="/addresses" class="gray ">
-                                        Addresses
+                                    <a class="gray" onclick="changeIframe()">
+                                        HELP
                                     </a>
     
                                 </li>
                                 <li class="sidebar-item clearfix">
+  
+                                    <a class="gray" href="http://127.0.0.1:5000">LOGOUT</a>
     
-                                    <a href="/quotations" class="gray ">
-                                        Quotations
-                                    </a>
-    
-                                </li>
-    
-                                <li class="sidebar-item clearfix">
-                                    <a href="/me">My Account</a>
                                 </li>
     
                             </ul>
@@ -476,7 +488,7 @@ $(document).ready(function () {
   <script>
     function changeIframeLink() {
       var iframe = document.getElementById("myIframe");
-      var newLink = "http://127.0.0.1:5000/projects/NBA/"; // Enter your desired link here
+      var newLink = "http://127.0.0.1:5000/projects/three/"; // Enter your desired link here
       iframe.src = newLink;
     }
   </script>
@@ -519,3 +531,73 @@ $(document).ready(function () {
 </html>
 
 
+
+<!DOCTYPE html>
+<html>
+<head>
+  <script>
+    function changeIframeL() {
+      var iframe = document.getElementById("myIframe");
+      var newLink = "http://127.0.0.1:5000/projects/about/"; // Enter your desired link here
+      iframe.src = newLink;
+    }
+  </script>
+</head>
+</html>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <script>
+    function changeIframe() {
+      var iframe = document.getElementById("myIframe");
+      var newLink = "http://127.0.0.1:5000/projects/help/"; // Enter your desired link here
+      iframe.src = newLink;
+    }
+  </script>
+</head>
+</html>
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <script>
+    function changeIfra() {
+      var iframe = document.getElementById("myIframe");
+      var newLink = "http://127.0.0.1:5000/projects/nhl/"; // Enter your desired link here
+      iframe.src = newLink;
+    }
+  </script>
+</head>
+</html>
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <script>
+    function changeIfr() {
+      var iframe = document.getElementById("myIframe");
+      var newLink = "http://127.0.0.1:5000/projects/nab/"; // Enter your desired link here
+      iframe.src = newLink;
+    }
+  </script>
+</head>
+</html>
+
+<!DOCTYPE html>
+<html>
+<head>
+  <script>
+    function changeIf() {
+      var iframe = document.getElementById("myIframe");
+      var newLink = "http://127.0.0.1:5000/projects/game/"; // Enter your desired link here
+      iframe.src = newLink;
+    }
+  </script>
+</head>
+</html>
