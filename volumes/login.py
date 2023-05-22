@@ -13,8 +13,8 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 # Define the Post class to manage actions in 'posts' table,  with a relationship to 'users' table
 
-class Player(db.Model):
-    __tablename__ = 'players'  # table name is plural, class name is singular
+class User(db.Model):
+    __tablename__ = 'Users'  # table name is plural, class name is singular
 
     # Define the User schema with "vars" from object
     id = db.Column(db.Integer, primary_key=True)
@@ -26,12 +26,10 @@ class Player(db.Model):
     
 
     # constructor of a User object, initializes the instance variables within object (self)
-    def __init__(self, name, uid, tokens, password="123qwerty"):
+    def __init__(self, name, uid, password="123qwerty"):
         self._name = name    # variables with self prefix become part of the object, 
         self._uid = uid
         self.set_password(password)
-        self._tokens = tokens
-
     # a name getter method, extracts name from object
     @property
     def name(self):
@@ -72,15 +70,6 @@ class Player(db.Model):
         return result
     
     # dob property is returned as string, to avoid unfriendly outcomes
-    @property
-    def tokens(self):
-        return self._tokens
-    
-    # dob should be have verification for type date
-    @tokens.setter
-    def tokens(self, tokens):
-        self._tokens = tokens
-    
     
     # output content using str(object) in human readable form, uses getter
     # output content using json dumps, this is ready for API response
@@ -106,13 +95,12 @@ class Player(db.Model):
             "id": self.id,
             "name": self.name,
             "uid": self.uid,
-            "tokens": self.tokens,
             "password": self._password
         }
 
     # CRUD update: updates user name, password, phone
     # returns self
-    def update(self, dictionary): #name="", uid="", password="", tokens=0):
+    def update(self, dictionary): #name="", uid="", password="",
         """only updates values with length"""
         for key in dictionary:
             if key == "name":
@@ -121,8 +109,6 @@ class Player(db.Model):
                 self.uid = dictionary[key]
             if key == "password":
                 self.set_password(dictionary[key])
-            if key == "tokens":
-                self.tokens = dictionary[key]
         db.session.commit()
         return self
 
@@ -138,15 +124,15 @@ class Player(db.Model):
 
 
 # Builds working data for testing
-def initPlayers():
+def initUsers():
     with app.app_context():
         """Create database and tables"""
         db.create_all()
         """Tester data for table"""
-        u1 = Player(name='Azeem Khan', uid='azeemK', password='prodlilxeem', tokens=45)
-        u2 = Player(name='Ahad Biabani', uid='ahadB', password='daha4tw', tokens=41)
-        u3 = Player(name='Akshat Parikh', uid='akshatP', password='akshlatt!!', tokens=40)
-        u4 = Player(name='Josh Williams', uid='joshW', password='tripleAJfrfr', tokens=38)
+        u1 = User(name='Azeem Khan', uid='azeemK', password='prodlilxeem')
+        u2 = User(name='Ahad Biabani', uid='ahadB', password='daha4tw')
+        u3 = User(name='Akshat Parikh', uid='akshatP', password='akshlatt!!')
+        u4 = User(name='Josh Williams', uid='joshW', password='tripleAJfrfr')
 
         users = [u1, u2, u3, u4]
 
