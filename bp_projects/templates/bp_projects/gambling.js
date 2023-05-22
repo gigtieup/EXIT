@@ -39,8 +39,8 @@ function getData(name, stat) {
     statsContainer.innerHTML = ''; // Clear previous content
   
     if (stats.length === 0) {
-      statsContainer.textContent = 'No stats found.';
-      return;
+    statsContainer.textContent = "Cannot Find Stats For " + player;
+     return;
     }
   
     stats.forEach(stat => {
@@ -52,7 +52,7 @@ function getData(name, stat) {
   
 
   // Usage: Pass the player's name and the desired stat to the `getData` function
-  getData( "id:29", "pts");
+  getData( "Jimmy Butler", "pts");
   
 
 // How to add query parameters to link for Fetch.API...
