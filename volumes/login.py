@@ -129,10 +129,10 @@ def initUsers():
         """Create database and tables"""
         db.create_all()
         """Tester data for table"""
-        u1 = User(name='Azeem Khan', uid='azeemK', password='prodlilxeem')
+        u1 = User(name='James Hunter', uid='jamesH', password='liljames123')
         u2 = User(name='Ahad Biabani', uid='ahadB', password='daha4tw')
-        u3 = User(name='Akshat Parikh', uid='akshatP', password='akshlatt!!')
-        u4 = User(name='Josh Williams', uid='joshW', password='tripleAJfrfr')
+        u3 = User(name='Yasha Khoshini', uid='yashaK', password='zasha')
+        u4 = User(name='Josh Williams', uid='joshW', password='WilliamsClan5')
 
         users = [u1, u2, u3, u4]
 
