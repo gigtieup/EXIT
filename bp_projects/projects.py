@@ -63,3 +63,7 @@ def signup():
 @app_projects.route('/acc/')
 def acc():
     return render_template("acc.html")
+
+@app_projects.route('/nhlteams/')
+def nhlteams():
+    return render_template("nhlteams.html")
