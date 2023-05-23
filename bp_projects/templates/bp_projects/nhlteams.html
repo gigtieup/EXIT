@@ -1,0 +1,82 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>NHL Teams</title>
+    <style>
+        .team {
+            border: 1px solid black;
+            margin: 10px;
+            padding: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+        }
+        .team img {
+            width: 50px;
+            height: 50px;
+            margin-right: 10px;
+        }
+        .team-info {
+            display: none;
+            margin-top: 10px;
+            padding: 10px;
+            border-top: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <div id="teams"></div>
+
+    <script>
+        var teams = [
+            "Team1",
+            "Team2",
+            // And so on for other teams
+        ];
+
+        var teamsDiv = document.getElementById('teams');
+
+        teams.forEach(team => {
+            var teamDiv = document.createElement('div');
+            teamDiv.className = 'team';
+
+            var logo = document.createElement('img');
+            logo.src = 'logo-url'; // Replace this with actual logo URL
+
+            var nameDiv = document.createElement('div');
+            nameDiv.innerText = team;
+
+            var infoDiv = document.createElement('div');
+            infoDiv.className = 'team-info';
+
+            teamDiv.appendChild(logo);
+            teamDiv.appendChild(nameDiv);
+            teamDiv.appendChild(infoDiv);
+            
+            teamDiv.addEventListener('click', function() {
+                if (infoDiv.style.display === 'none') {
+                    fetch(`https://hockey-live-sk-data.p.rapidapi.com/team/${team}/nhl/2023?key=b034f54d9ae5dab25f5cc385cca146d6`, {
+                        method: "GET",
+                        headers: {
+                            "x-rapidapi-host": "hockey-live-sk-data.p.rapidapi.com",
+                            "x-rapidapi-key": "b034f54d9ae5dab25f5cc385cca146d6"
+                        }
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        infoDiv.innerText = 'Team Info: ' + JSON.stringify(data); // Format this as per your needs
+                        infoDiv.style.display = 'block';
+                    })
+                    .catch(err => console.error(err));
+                } else {
+                    infoDiv.style.display = 'none';
+                }
+            });
+
+            teamsDiv.appendChild(teamDiv);
+        });
+    </script>
+</body>
+</html>
+
