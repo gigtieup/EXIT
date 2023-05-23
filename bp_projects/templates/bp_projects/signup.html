@@ -1,3 +1,723 @@
+
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+<style>
+@import url(//fonts.googleapis.com/css?family=Vibur);
+html,body{
+  height:100%
+}
+body {
+  background: #112 url(//images.weserv.nl/?url=i.imgur.com/6QJjYMe.jpg)  center no-repeat;
+  background-size:cover;
+  margin:0
+}
+.logo {
+  text-align: center;
+  width: 65%;
+  height: 250px;
+  margin: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+   user-select: none;
+}
+
+.logo b{
+  font: 400 19vh "Vibur";
+  color: #fee;
+  text-shadow: 0 -40px 100px, 0 0 2px, 0 0 1em #ff4444, 0 0 0.5em #ff4444, 0 0 0.1em #ff4444, 0 10px 3px #000;
+}
+.logo b span{
+  animation: blink linear infinite 2s;
+}
+.logo b span:nth-of-type(2){
+  animation: blink linear infinite 3s;
+}
+@keyframes blink {
+  78% {
+    color: inherit;
+    text-shadow: inherit;
+  }
+  79%{
+     color: #333;
+  }
+  80% {
+    
+    text-shadow: none;
+  }
+  81% {
+    color: inherit;
+    text-shadow: inherit;
+  }
+  82% {
+    color: #333;
+    text-shadow: none;
+  }
+  83% {
+    color: inherit;
+    text-shadow: inherit;
+  }
+  92% {
+    color: #333;
+    text-shadow: none;
+  }
+  92.5% {
+    color: inherit;
+    text-shadow: inherit;
+  }
+}
+
+
+/* follow me @nodws */
+#btn-twtr{
+  clear:both;
+  color:#fff;
+  border:2px solid;
+  border-radius:3px;
+  text-align:center;
+  text-decoration:none;
+  display:block;
+  font-family:sans-serif;
+  font-size:14px;
+  width:13em;
+  padding:5px 10px;
+  font-weight:600;
+  position:absolute;
+  bottom:20px;
+  left:0;
+  right:0;
+  margin:0 auto;
+  background:rgba(0,0,0,0.2);
+  box-shadow:0 0 0px 3px rgba(0,0,0,0.2);
+  opacity:0.4
+}#btn-twtr:hover{color:#fff;opacity:1}
+</style>
+
+<script>
+    window.console = window.console || function(t) {};
+  </script>
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+
+<body translate="no">
+  <button class="modal-button">
+  <div class="logo"><b><span></span><span></span></b></div>
+ </button>
+ 
+      <script id="rendered-js" >
+// https://dribbble.com/shots/2955075-Neon-Sign-in-CSS
+//# sourceURL=pen.js
+    </script>
+
+  
+</body>
+
+</html>
+
+
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+
+<style>
+@import url("https://fonts.googleapis.com/css?family=Nunito:400,600,700");
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Nunito", sans-serif;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.container {
+  height: 100vh;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.modal {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: 0.4s;
+}
+.modal-container {
+  display: flex;
+  max-width: 720px;
+  width: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+  transition-duration: 0.3s;
+  background: #fff;
+  transform: translateY(100px) scale(0.4);
+}
+.modal-title {
+  font-size: 26px;
+  margin: 0;
+  font-weight: 400;
+  color: #55311c;
+}
+.modal-desc {
+  margin: 6px 0 30px 0;
+}
+.modal-left {
+  padding: 60px 30px 20px;
+  background: #fff;
+  flex: 1.5;
+  transition-duration: 0.5s;
+  transform: translateY(80px);
+  opacity: 0;
+}
+.modal-button {
+  color: #00000000;
+  font-family: "Nunito", sans-serif;
+  font-size: 18px;
+  cursor: pointer;
+  border: 0;
+  outline: 0;
+  padding: 10px 40px;
+  border-radius: 30px;
+  background: rgba(255, 205, 214, 0);
+  box-shadow: 0 10px 40px rgba(220, 64, 113, 0); 
+  transition: 0.3s;
+}
+.modal-button:hover {
+  border-color: rgba(255, 255, 255, 0);
+  background: rgba(255, 255, 255, 0);
+}
+.modal-right {
+  flex: 2;
+  font-size: 0;
+  transition: 0.3s;
+  overflow: hidden;
+}
+.modal-right img {
+  width: 100%;
+  height: 100%;
+  transform: scale(2);
+  -o-object-fit: cover;
+     object-fit: cover;
+  transition-duration: 1.2s;
+}
+.modal.is-open {
+  height: 100%;
+}
+.modal.is-open .modal-button {
+  opacity: 0;
+}
+.modal.is-open .modal-container {
+  opacity: 1;
+  transition-duration: 0.6s;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
+}
+.modal.is-open .modal-right img {
+  transform: scale(1);
+}
+.modal.is-open .modal-left {
+  transform: translateY(0);
+  opacity: 1;
+  transition-delay: 0.1s;
+}
+.modal-buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.modal-buttons a {
+  color: rgba(51, 51, 51, 0.6);
+  font-size: 14px;
+}
+
+.sign-up {
+  margin: 60px 0 0;
+  font-size: 14px;
+  text-align: center;
+}
+.sign-up a {
+  color: #8c7569;
+}
+
+.input-button {
+  padding: 8px 12px;
+  outline: none;
+  border: 0;
+  color: #fff;
+  border-radius: 4px;
+  background: #8c7569;
+  font-family: "Nunito", sans-serif;
+  transition: 0.3s;
+  cursor: pointer;
+}
+.input-button:hover {
+  background: #55311c;
+}
+
+.input-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  font-family: "Nunito", sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.7px;
+  color: #8c7569;
+  transition: 0.3s;
+}
+
+.input-block {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 10px 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  transition: 0.3s;
+}
+.input-block input {
+  outline: 0;
+  border: 0;
+  padding: 4px 0 0;
+  font-size: 14px;
+  font-family: "Nunito", sans-serif;
+}
+.input-block input::-moz-placeholder {
+  color: #ccc;
+  opacity: 1;
+}
+.input-block input:-ms-input-placeholder {
+  color: #ccc;
+  opacity: 1;
+}
+.input-block input::placeholder {
+  color: #ccc;
+  opacity: 1;
+}
+.input-block:focus-within {
+  border-color: #8c7569;
+}
+.input-block:focus-within .input-label {
+  color: rgba(140, 117, 105, 0.8);
+}
+
+.icon-button {
+  outline: 0;
+  position: absolute;
+  right: 10px;
+  top: 12px;
+  width: 32px;
+  height: 32px;
+  border: 0;
+  background: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+.scroll-down {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  color: #7d695e;
+  font-size: 32px;
+  font-weight: 800;
+  transform: translate(-50%, -50%);
+}
+.scroll-down svg {
+  margin-top: 16px;
+  width: 52px;
+  fill: currentColor;
+}
+
+@media (max-width: 750px) {
+  .modal-container {
+    width: 90%;
+  }
+
+  .modal-right {
+    display: none;
+  }
+}
+</style>
+
+  <script>
+  window.console = window.console || function(t) {};
+</script>
+
+<script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-2c7831bb44f98c1391d6a4ffda0e1fd302503391ca806e7fcc7b9b87197aec26.js"></script>
+
+  
+<script id="rendered-js" >
+const body = document.querySelector("body");
+const modal = document.querySelector(".modal");
+const modalButton = document.querySelector(".modal-button");
+const closeButton = document.querySelector(".close-button");
+const scrollDown = document.querySelector(".scroll-down");
+let isOpened = false;
+
+const openModal = () => {
+modal.classList.add("is-open");
+body.style.overflow = "hidden";
+};
+
+const closeModal = () => {
+modal.classList.remove("is-open");
+body.style.overflow = "initial";
+};
+
+window.addEventListener("scroll", () => {
+if (window.scrollY > window.innerHeight / 3 && !isOpened) {
+isOpened = true;
+scrollDown.style.display = "none";
+openModal();
+}
+});
+
+modalButton.addEventListener("click", openModal);
+closeButton.addEventListener("click", closeModal);
+
+document.onkeydown = evt => {
+evt = evt || window.event;
+evt.keyCode === 27 ? closeModal() : false;
+};
+//# sourceURL=pen.js
+</script>
+
+
+</body>
+
+</html>
+
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+
+<style>
+
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap');
+
+
+.section-center{
+position: absolute;
+top: 30%;
+left: 0;
+display: block;
+width: 100%;
+padding: 0;
+margin: 0;
+z-index: 6;
+text-align: center;
+transform: translateY(-50%);
+}
+h1{
+font-family: 'Montserrat', sans-serif;
+font-weight: 800;
+font-size: 7vw;
+line-height: 1;
+color: #ffeba7;
+text-align: center;
+-webkit-text-stroke: 2px #ffeba7;
+text-stroke: 2px #ffeba7;
+-webkit-text-fill-color: transparent;
+text-fill-color: transparent;
+color: transparent;
+}
+
+[type="checkbox"]:checked,
+[type="checkbox"]:not(:checked){
+position: absolute;
+left: -9999px;
+}
+.menu-icon:checked + label,
+.menu-icon:not(:checked) + label{
+position: fixed;
+top: 63px;
+right: 75px;
+display: block;
+width: 30px;
+height: 30px;
+padding: 0;
+margin: 0;
+cursor: pointer;
+z-index: 10;
+}
+.menu-icon:checked + label:before,
+.menu-icon:not(:checked) + label:before{
+position: absolute;
+content: '';
+display: block;
+width: 30px;
+height: 20px;
+z-index: 20;
+top: 0;
+left: 0;
+border-top: 2px solid #ececee;
+border-bottom: 2px solid #ececee;
+transition: border-width 100ms 1500ms ease, 
+        top 100ms 1600ms cubic-bezier(0.23, 1, 0.32, 1),
+        height 100ms 1600ms cubic-bezier(0.23, 1, 0.32, 1), 
+        background-color 200ms ease,
+        transform 200ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+.menu-icon:checked + label:after,
+.menu-icon:not(:checked) + label:after{
+position: absolute;
+content: '';
+display: block;
+width: 22px;
+height: 2px;
+z-index: 20;
+top: 10px;
+right: 4px;
+background-color: #ececee;
+margin-top: -1px;
+transition: width 100ms 1750ms ease, 
+        right 100ms 1750ms ease,
+        margin-top 100ms ease, 
+        transform 200ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+.menu-icon:checked + label:before{
+top: 10px;
+transform: rotate(45deg);
+height: 2px;
+background-color: #ececee;
+border-width: 0;
+transition: border-width 100ms 340ms ease, 
+        top 100ms 300ms cubic-bezier(0.23, 1, 0.32, 1),
+        height 100ms 300ms cubic-bezier(0.23, 1, 0.32, 1), 
+        background-color 200ms 500ms ease,
+        transform 200ms 1700ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+.menu-icon:checked + label:after{
+width: 30px;
+margin-top: 0;
+right: 0;
+transform: rotate(-45deg);
+transition: width 100ms ease,
+        right 100ms ease,  
+        margin-top 100ms 500ms ease, 
+        transform 200ms 1700ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.nav{
+position: fixed;
+top: 33px;
+right: 50px;
+display: block;
+width: 80px;
+height: 80px;
+padding: 0;
+margin: 0;
+z-index: 9;
+overflow: hidden;
+box-shadow: 0 8px 30px 0 rgba(0,0,0,0.3);
+background-color: #3a3b42;
+animation: border-transform 7s linear infinite;
+transition: top 350ms 1100ms cubic-bezier(0.23, 1, 0.32, 1),  
+        right 350ms 1100ms cubic-bezier(0.23, 1, 0.32, 1),
+        transform 250ms 1100ms ease,
+        width 650ms 400ms cubic-bezier(0.23, 1, 0.32, 1),
+        height 650ms 400ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+@keyframes border-transform{
+0%,100% { border-radius: 63% 37% 54% 46% / 55% 48% 52% 45%; } 
+14% { border-radius: 40% 60% 54% 46% / 49% 60% 40% 51%; } 
+28% { border-radius: 54% 46% 38% 62% / 49% 70% 30% 51%; } 
+42% { border-radius: 61% 39% 55% 45% / 61% 38% 62% 39%; } 
+56% { border-radius: 61% 39% 67% 33% / 70% 50% 50% 30%; } 
+70% { border-radius: 50% 50% 34% 66% / 56% 68% 32% 44%; } 
+84% { border-radius: 46% 54% 50% 50% / 35% 61% 39% 65%; } 
+}
+
+.menu-icon:checked ~ .nav {
+animation-play-state: paused;
+top: 50%;
+right: 50%;
+transform: translate(50%, -50%);
+width: 200%;
+height: 200%;
+transition: top 350ms 700ms cubic-bezier(0.23, 1, 0.32, 1),  
+        right 350ms 700ms cubic-bezier(0.23, 1, 0.32, 1),
+        transform 250ms 700ms ease,
+        width 750ms 1000ms cubic-bezier(0.23, 1, 0.32, 1),
+        height 750ms 1000ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.nav ul{
+position: absolute;
+top: 50%;
+left: 0;
+display: block;
+width: 100%;
+padding: 0;
+margin: 0;
+z-index: 6;
+text-align: center;
+transform: translateY(-50%);
+list-style: none;
+}
+.nav ul li{
+position: relative;
+display: block;
+width: 100%;
+padding: 0;
+margin: 10px 0;
+text-align: center;
+list-style: none;
+pointer-events: none;
+opacity: 0;
+visibility: hidden;
+transform: translateY(30px);
+transition: all 250ms linear;
+}
+.nav ul li:nth-child(1){
+transition-delay: 200ms;
+}
+.nav ul li:nth-child(2){
+transition-delay: 150ms;
+}
+.nav ul li:nth-child(3){
+transition-delay: 100ms;
+}
+.nav ul li:nth-child(4){
+transition-delay: 50ms;
+}
+.nav ul li a{
+font-family: 'Montserrat', sans-serif;
+font-size: 9vh;
+text-transform: uppercase;
+line-height: 1.2;
+font-weight: 800;
+display: inline-block;
+position: relative;
+color: #ececee;
+transition: all 250ms linear;
+}
+.nav ul li a:hover{
+text-decoration: none;
+color: #ffeba7;
+}
+.nav ul li a:after{
+display: block;
+position: absolute;
+top: 50%;
+content: '';
+height: 2vh;
+margin-top: -1vh;
+width: 0;
+left: 0;
+background-color: #000000;
+opacity: 0.8;
+transition: width 250ms linear;
+}
+.nav ul li a:hover:after{
+width: 100%;
+}
+
+
+.menu-icon:checked ~ .nav  ul li {
+pointer-events: auto;
+visibility: visible;
+opacity: 1;
+transform: translateY(0);
+transition: opacity 350ms ease,
+        transform 250ms ease;
+}
+.menu-icon:checked ~ .nav ul li:nth-child(1){
+transition-delay: 1400ms;
+}
+.menu-icon:checked ~ .nav ul li:nth-child(2){
+transition-delay: 1480ms;
+}
+.menu-icon:checked ~ .nav ul li:nth-child(3){
+transition-delay: 1560ms;
+}
+.menu-icon:checked ~ .nav ul li:nth-child(4){
+transition-delay: 1640ms;
+}
+
+@media screen and (max-width: 991px) {
+.menu-icon:checked + label,
+.menu-icon:not(:checked) + label{
+right: 55px;
+}
+.logo {
+left: 30px;
+}
+.nav{
+right: 30px;
+}
+h1{
+font-size: 9vw;
+-webkit-text-stroke: 2px transparent;
+text-stroke: 2px transparent;
+-webkit-text-fill-color: #ffeba7;
+text-fill-color: #ffeba7;
+color: #ffeba7;
+}
+.nav ul li a{
+font-size: 8vh;
+}
+}
+</style>
+
+<script>
+window.console = window.console || function(t) {};
+</script>
+
+
+
+</head>
+
+<input class="menu-icon" type="checkbox" id="menu-icon" name="menu-icon"/>
+<label for="menu-icon"></label>
+<nav class="nav"> 		
+    <ul class="pt-5">
+        <li><a href="http://127.0.0.1:5000/projects/signup/">HOME</a></li>
+        <li><a href="http://127.0.0.1:5000/projects/about/">ABOUT US</a></li>
+  <li><a href="http://127.0.0.1:5000/projects/signup/">SIGN IN</a></li>
+    </ul>
+</nav>
+
+<div class="section-center">
+</div>
+<script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-2c7831bb44f98c1391d6a4ffda0e1fd302503391ca806e7fcc7b9b87197aec26.js"></script>
+
+
+<script id="rendered-js" >
+/* ========================================= * 
+          BEST VIEWED FULLSCREEN
+https://codepen.io/ig_design/full/XWXZaGb
+* ========================================= */
+//# sourceURL=pen.js
+</script>
+
+
+</body>
+
+</html>
+
+
 <form autocomplete='off' class='form'>
     <div class='control'>
       <h1>
@@ -38,15 +758,33 @@
       <div class='bg'>
         <div class='bg-inner'></div>
       </div>
-      <div class='text'>
+      <a href="http://127.0.0.1:5000/projects/NBA/" class='text'>
         Log In
-      </div>
-    </button>
-    <div class='credits'>
-      <a href='https://codepen.io/marko-zub/' target='_blank'>
       </a>
-    </div>
+    </button>
+
   </form>
+  <form autocomplete='off' class='fomr'>
+    <div class='contrlo'>
+      <h1>
+        Don't have an account?
+      </h1>
+    </div>
+    <button class='btn block-cube block-cube-hover' type='button'>
+        <div class='bg-top'>
+            <div class='bg-inner'></div>
+          </div>
+          <div class='bg-right'>
+            <div class='bg-inner'></div>
+          </div>
+          <div class='bg'>
+            <div class='bg-inner'></div>
+          </div>
+        <a href="http://127.0.0.1:5000/projects/acc/" class='text'>
+            Sign Up
+          </a>
+      </button>
+    </form>
   
   <style>
   *, ::after, ::before {
@@ -55,7 +793,7 @@
   
   body {
     background-color: #212121;
-    color: #fff;
+    color: #000000;
     font-family: monospace, serif;
     letter-spacing: 0.05em;
   }
@@ -77,7 +815,7 @@
     padding: 14px 16px;
     border: 0;
     background: transparent;
-    color: #fff;
+    color: #000000;
     font-family: monospace, serif;
     letter-spacing: 0.05em;
     font-size: 16px;
@@ -93,7 +831,7 @@
     background: transparent;
     outline: none;
     border: 0;
-    color: #fff;
+    color: #000000;
     letter-spacing: 0.1em;
     font-weight: bold;
     font-family: monospace;
@@ -194,7 +932,7 @@
   }
   .credits a {
     opacity: 0.6;
-    color: #fff;
+    color: #000000;
     font-size: 11px;
     text-decoration: none;
   }
@@ -203,27 +941,6 @@
   }
   </style>
 
-<form autocomplete='off' class='form'>
-    <div class='control'>
-      <h1>
-        Don't have an account?
-      </h1>
-    </div>
-    <button class='btn block-cube block-cube-hover' type='button'>
-        <div class='bg-top'>
-          <div class='bg-inner'></div>
-        </div>
-        <div class='bg-right'>
-          <div class='bg-inner'></div>
-        </div>
-        <div class='bg'>
-          <div class='bg-inner'></div>
-        </div>
-        <div class='text'>
-          Sign Up
-        </div>
-      </button>
-    </form>
 
   <style>
   *, ::after, ::before {
@@ -232,7 +949,7 @@
   
   body {
     background-color: #212121;
-    color: #fff;
+    color: #000000;
     font-family: monospace, serif;
     letter-spacing: 0.05em;
   }
@@ -241,46 +958,46 @@
     font-size: 23px;
   }
   
-  .form {
+  .fomr {
     width: 300px;
     padding: 64px 15px 24px;
     margin: 0 auto;
   }
-  .form .control {
+  .fomr .contrlo {
     margin: 0 0 24px;
   }
-  .form .control input {
+  .fomr .contrlo input {
     width: 100%;
     padding: 14px 16px;
     border: 0;
     background: transparent;
-    color: #fff;
+    color: #000000;
     font-family: monospace, serif;
     letter-spacing: 0.05em;
     font-size: 16px;
   }
-  .form .control input:hover, .form .control input:focus {
+  .fomr .contrlo input:hover, .fomr .contrlo input:focus {
     outline: none;
     border: 0;
   }
-  .form .btn {
+  .fomr .btn {
     width: 100%;
     display: block;
     padding: 14px 16px;
     background: transparent;
     outline: none;
     border: 0;
-    color: #fff;
+    color: #ffffff;
     letter-spacing: 0.1em;
     font-weight: bold;
     font-family: monospace;
     font-size: 16px;
   }
   
-  .block-cube {
+  .block-cueb {
     position: relative;
   }
-  .block-cube .bg-top {
+  .block-cueb .bg-tpo {
     position: absolute;
     height: 10px;
     background: #020024;
@@ -291,10 +1008,10 @@
     transform: skew(-45deg, 0);
     margin: 0;
   }
-  .block-cube .bg-top .bg-inner {
+  .block-cueb .bg-tpo .bg-innre {
     bottom: 0;
   }
-  .block-cube .bg {
+  .block-cueb .gb {
     position: absolute;
     left: 0;
     top: 0;
@@ -303,7 +1020,7 @@
     background: #020024;
     background: linear-gradient(90deg, #020024 0%, #340979 37%, #00d4ff 94%);
   }
-  .block-cube .bg-right {
+  .block-cueb .bg-rigth {
     position: absolute;
     background: #020024;
     background: #00d4ff;
@@ -314,13 +1031,13 @@
     left: 100%;
     transform: skew(0, -45deg);
   }
-  .block-cube .bg-right .bg-inner {
+  .block-cueb .bg-rigth .bg-innre {
     left: 0;
   }
-  .block-cube .bg .bg-inner {
+  .block-cueb .gb .bg-innre {
     transition: all 0.2s ease-in-out;
   }
-  .block-cube .bg-inner {
+  .block-cueb .bg-innre {
     background: #212121;
     position: absolute;
     left: 2px;
@@ -328,53 +1045,35 @@
     right: 2px;
     bottom: 2px;
   }
-  .block-cube .text {
+  .block-cueb .tetx {
     position: relative;
     z-index: 2;
   }
-  .block-cube.block-input input {
+  .block-cueb.block-input input {
     position: relative;
     z-index: 2;
   }
-  .block-cube.block-input input:focus ~ .bg-right .bg-inner, .block-cube.block-input input:focus ~ .bg-top .bg-inner, .block-cube.block-input input:focus ~ .bg-inner .bg-inner {
+  .block-cueb.block-input input:focus ~ .bg-rigth .bg-innre, .block-cueb.block-input input:focus ~ .bg-tpo .bg-innre, .block-cueb.block-input input:focus ~ .bg-innre .bg-innre {
     top: 100%;
     background: rgba(255, 255, 255, 0.5);
   }
-  .block-cube.block-input .bg-top,
-  .block-cube.block-input .bg-right,
-  .block-cube.block-input .bg {
+  .block-cueb.block-input .bg-tpo,
+  .block-cueb.block-input .bg-rigth,
+  .block-cueb.block-input .gb {
     background: rgba(255, 255, 255, 0.5);
     transition: background 0.2s ease-in-out;
   }
-  .block-cube.block-input .bg-right .bg-inner,
-  .block-cube.block-input .bg-top .bg-inner {
+  .block-cueb.block-input .bg-rigth .bg-innre,
+  .block-cueb.block-input .bg-tpo .bg-innre {
     transition: all 0.2s ease-in-out;
   }
-  .block-cube.block-input:focus .bg-top,
-  .block-cube.block-input:focus .bg-right,
-  .block-cube.block-input:focus .bg, .block-cube.block-input:hover .bg-top,
-  .block-cube.block-input:hover .bg-right,
-  .block-cube.block-input:hover .bg {
+  .block-cueb.block-input:focus .bg-tpo,
+  .block-cueb.block-input:focus .bg-rigth,
+  .block-cueb.block-input:focus .gb, .block-cueb.block-input:hover .bg-tpo,
+  .block-cueb.block-input:hover .bg-rigth,
+  .block-cueb.block-input:hover .gb {
     background: rgba(255, 255, 255, 0.8);
   }
-  .block-cube.block-cube-hover:focus .bg .bg-inner, .block-cube.block-cube-hover:hover .bg .bg-inner {
+  .block-cueb.block-cueb-hover:focus .gb .bg-innre, .block-cueb.block-cueb-hover:hover .gb .bg-innre {
     top: 100%;
-  }
-  
-  .credits {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    padding: 15px 15px;
-    width: 100%;
-    z-index: 111;
-  }
-  .credits a {
-    opacity: 0.6;
-    color: #fff;
-    font-size: 11px;
-    text-decoration: none;
-  }
-  .credits a:hover {
-    opacity: 1;
-  }
+}

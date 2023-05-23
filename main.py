@@ -19,7 +19,7 @@ def page_not_found(e):
 
 @app.route('/')  # connects default URL to index() function
 def AP():
-    return render_template("AP.html")
+    return render_template("signup.html")
 
 @app.route('/stub/')  # connects /stub/ URL to stub() function
 def stub():
