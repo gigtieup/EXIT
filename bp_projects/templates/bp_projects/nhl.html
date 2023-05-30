@@ -4,42 +4,44 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #b6afaf; /* add a light grey background */
-            text-align: center; /* center all text */
+            background-color: #b6afaf;
+            text-align: center;
         }
         .search-container {
             margin: 1em;
-            display: flex; /* create a flexible layout */
-            justify-content: center; /* center the child items */
-            align-items: center; /* align items vertically */
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
         .search-container input {
-            width: 50%; /* make the input larger */
-            padding: 10px; /* add some padding */
-            font-size: 1em; /* make the text larger */
+            width: 50%;
+            padding: 10px;
+            font-size: 1em;
         }
         .player-data {
-            margin: 1em auto; /* center the div */
+            margin: 1em auto;
             border: 1px solid #000;
             padding: 1em;
-            width: 50%; /* specify a width */
-            background-color: #ffffff; /* add a white background */
+            width: 50%;
+            background-color: #ffffff;
         }
         .title {
-            font-size: 2em; /* make the title larger */
-            color: #ff0000; /* make the title blue */
+            font-size: 2em;
+            color: #ff0000;
+        }
+        .hidden-stats {
+            display: none;
         }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
-    <h1 class="title">NHL Player Statistics</h1> <!-- Add the title -->
+    <h1 class="title">NHL Player Statistics</h1>
     <div class="search-container">
         <input type="text" id="playerName" placeholder="Enter NHL player name (LAST NAME First Name)">
         <button onclick="searchPlayer()">Search Player</button>
     </div>
     <div class="player-data" id="playerData">
-        <!-- Player data will be inserted here -->
     </div>
 </body>
 
@@ -63,43 +65,17 @@
             const response = await axios.request(options);
             let data = response.data;
 
-            // Parse string data into JSON object
             if (typeof data === 'string') {
                 data = JSON.parse(data);
             }
 
             const playerDataElement = document.getElementById('playerData');
-            playerDataElement.innerHTML = ''; // Clear previous data
+            playerDataElement.innerHTML = '';
 
             for (const key in data) {
                 const value = data[key];
                 if (typeof value === 'object' && value !== null) {
-                    // Handle first level nested object
-                    const nestedObjectElement = document.createElement('div');
-                    const title = document.createElement('h2');
-                    title.innerText = key;
-                    nestedObjectElement.appendChild(title);
-                    for (const nestedKey in value) {
-                        const nestedValue = value[nestedKey];
-                        if (typeof nestedValue === 'object' && nestedValue !== null) {
-                            // Handle second level nested object
-                            const secondNestedObjectElement = document.createElement('div');
-                            const secondTitle = document.createElement('h3');
-                            secondTitle.innerText = nestedKey;
-                            secondNestedObjectElement.appendChild(secondTitle);
-                            for (const secondNestedKey in nestedValue) {
-                                const secondNestedStats = document.createElement('p');
-                                secondNestedStats.innerText = `${secondNestedKey}: ${nestedValue[secondNestedKey]}`;
-                                secondNestedObjectElement.appendChild(secondNestedStats);
-                            }
-                            nestedObjectElement.appendChild(secondNestedObjectElement);
-                        } else {
-                            const nestedStats = document.createElement('p');
-                            nestedStats.innerText = `${nestedKey}: ${nestedValue}`;
-                            nestedObjectElement.appendChild(nestedStats);
-                        }
-                    }
-                    playerDataElement.appendChild(nestedObjectElement);
+                    playerDataElement.appendChild(parseObject(value, key));
                 } else {
                     const stats = document.createElement('p');
                     stats.innerText = `${key}: ${value}`;
@@ -110,9 +86,38 @@
             console.error('Error:', error);
         }
     }
+
+    function parseObject(data, titleText) {
+        const objectElement = document.createElement('div');
+        const title = document.createElement('h2');
+        title.innerText = titleText;
+        objectElement.appendChild(title);
+
+        for (const key in data) {
+            const value = data[key];
+            if (typeof value === 'object' && value !== null) {
+                objectElement.appendChild(parseObject(value, key));
+            } else {
+                const stats = document.createElement('p');
+                stats.innerText = `${key}: ${value}`;
+                objectElement.appendChild(stats);
+            }
+        }
+
+        const button = document.createElement('button');
+        button.innerText = 'Show stats';
+        button.addEventListener('click', function() {
+            for (let i = 1; i < objectElement.childNodes.length; i++) {
+                objectElement.childNodes[i].classList.toggle('hidden-stats');
+            }
+        });
+
+        objectElement.insertBefore(button, objectElement.childNodes[0]);
+        for (let i = 1; i < objectElement.childNodes.length; i++) {
+            objectElement.childNodes[i].classList.add('hidden-stats');
+        }
+
+        return objectElement;
+    }
 </script>
-
-
-    
-</body>
 </html>
