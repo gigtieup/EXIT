@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+    <meta charset="UTF-8">
+    
+    <link href="https://fonts.googleapis.com/css?family=Lexend+Exa&display=swap" rel="stylesheet">
+  
+  
+  <style>
+  bodi {
+    font-family: "Lexend Exa", sans-serif;
+  }
+  
+  nav {
+    position: absolute;
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: inline-block;
+    border: 2px solid #EBECF1;
+    border-radius: 30px;
+    animation: slide-in 1s ease-out;
+  }
+  
+  ul {
+    position: relative;
+    display: flex;
+    flex: 1 1 auto;
+    margin: 0;
+    padding: 0 30px;
+    list-style-type: none;
+  }
+  ul li:not(:last-child) {
+    margin-right: 40px;
+  }
+  ul li {
+    border: 2px solid transparent;
+    border-radius: 5px;
+    padding: 10px;
+    transition: background 0.2s;
+  }
+  ul li a {
+    color: #494949;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  ul li ul {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    display: block;
+    margin: 12px -12px;
+    padding: 0;
+    background: #000000;
+    border: 2px solid #000000;
+    border-right: 2px solid #000000;
+    border-bottom: 2px solid #000000;
+    border-radius: 5px;
+    transition: opacity 0.2s, visibility 0.2s;
+  }
+  ul li ul li {
+    margin: -2px 0 0 -2px;
+    width: calc(100% - 20px);
+    line-height: 1.7;
+  }
+  ul li ul li a {
+    color: #6f6f6f;
+  }
+  ul li:hover a {
+    color: #ffffff;
+  }
+  ul li:hover ul {
+    visibility: visible;
+    opacity: 1;
+  }
+  ul li:hover ul li a {
+    color: #F9F8FD;
+  }
+  
+  @keyframes slide-in {
+    0% {
+      top: -50px;
+    }
+    40% {
+      top: 20px;
+    }
+    70% {
+      top: 10px;
+    }
+    100% {
+      top: 15px;
+    }
+  }
+  </style>
+  
+    <script>
+    window.console = window.console || function(t) {};
+  </script>
+  
+    
+    
+  </head>
+  
+  <body translate="no">
+    <nav>
+    <ul>
+      <li><a href="http://127.0.0.1:5000/projects/three/">HOME</a></li>
+      <li>
+        <a href="#0">NBA</a>
+        <ul>
+          <li><a href="http://127.0.0.1:5000/projects/AB/">PLAYER STATS</a></li>
+          <li><a href="http://127.0.0.1:5000/projects/game/">GAMEBOARD</a></li>
+          <li><a href="#0">BETTING HELP</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#0">NHL</a>
+        <ul>
+          <li><a href="http://127.0.0.1:5000/projects/nhl/">PLAYER STATS</a></li>
+          <li><a href="http://127.0.0.1:5000/projects/games/">GAMEBOARD</a></li>
+          <li><a href="#0">BETTING HELP</a></li>
+        </ul>
+      </li>
+      <li><a href="#0">About</a></li>
+      <li><a href="http://127.0.0.1:5000">LOG OUT</a></li>
+    </ul>
+  </nav>
+    
+    
+    
+    
+  </body>
+  
+  </html>
+  <!DOCTYPE html>
+  <html lang="en" >
+  
+  <head>
+    <meta charset="UTF-8">
+  
+  <style>
+  * {
+      all: unset;
+      display: revert;
+      box-sizing: border-box;
+  }
+  
+  [default-styles] {
+      all: revert;
+  }
+  
+  html {
+      font-family: sans-serif;
+      font-size: 16px;
+      color: rgb(250, 250, 250);
+      background-color: rgb(25, 25, 25);
+      padding: 4em;
+  }
+  
+  h1 {
+      font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: 7vw;
+    line-height: 1;
+    color: #ffeba7;
+    text-align: center;
+    -webkit-text-stroke: 2px #ffeba7;
+    text-stroke: 2px #ffeba7;
+    -webkit-text-fill-color: transparent;
+    text-fill-color: transparent;
+    color: transparent;
+  }
+  
+  h2 {
+      font-size: 2.25em;
+      margin: 1rem 0;
+  }
+  
+  h3 {
+      font-size: 1.5em;
+      margin: 1rem 0;
+      font-weight: 700;
+  }
+  
+  input {
+      color: rgb(250, 250, 250);
+      background-color: rgb(25, 25, 25);
+      border: 2px solid rgba(250, 250, 250, 0.5);
+      border-radius: 8px;
+      text-align: center;
+      padding: 1em;
+      margin-right: 1rem;
+      transition: all 0.25s ease;
+  }
+  
+  input::placeholder {
+      color: rgba(250, 250, 250, 0.5);
+  }
+  
+  input:focus {
+      border: 2px solid rgba(250, 250, 250);
+      transition: all 0.25s ease;
+  }
+  
+  button {
+      color: rgb(25, 25, 25);
+      background-color: rgba(250, 250, 250, 0.8);
+      padding: 1em;
+      border-radius: 8px;
+      transition: all 0.25s ease;
+      font-weight: 700;
+  }
+  
+  button:hover {
+      background-color: rgb(250, 250, 250);
+      transition: all 0.25s ease;
+  }
+  
+  ul {
+      list-style-type: none;
+  }
+  
+  li {
+      margin: 0.5rem 0;
+  }
+  
+  div {
+      padding: 1em 2em;
+      margin: 2em 0;
+      border-radius: 16px;
+      transition: all 0.5s ease;
+  }
+  
+  p {
+      margin: 2rem 0;
+  }
+  </style>
+  
+    <script>
+    window.console = window.console || function(t) {};
+  </script>
+  
+    
+    
+</head>
+<body translate="no">
+ <section>
+       <form action="">
+           <h3 class="mb-0">&nbsp;&nbsp;&nbsp;&nbsp;</h3>
+           <h1 class="mb-0">NBA</h1>
+           <h3 class="mb-0">&nbsp;&nbsp;&nbsp;&nbsp;</h3>
+           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+           <input type="text" id="searchFirst" name="searchFirst" placeholder="Player Name">
+           <input type="text" id="searchLast" name="searchLast" placeholder="Last Name">
+           <button>Enter</button>
+       </form>
+   </section>
+ <section id="results"></section>
+ <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+ <script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-2c7831bb44f98c1391d6a4ffda0e1fd302503391ca806e7fcc7b9b87197aec26.js"></script>
+
+
+   <script id="rendered-js" >
+const button = document.querySelector("button");
+const searchFirst = document.querySelector("#searchFirst");
+const searchLast = document.querySelector("#searchLast");
+const results = document.querySelector("#results");
+
+const searchPlayers = async searchQuery => {
+const searchResults = await axios.get(`https://www.balldontlie.io/api/v1/players?search=${searchQuery}&per_page=100`);
+return searchResults.data.data;
+};
+
+const fetchStats = async id => {
+const fullStats = await axios.get(`https://www.balldontlie.io/api/v1/season_averages?player_ids[]=${id}`);
+return fullStats.data.data[0];
+};
+
+button.addEventListener("click", async event => {
+event.preventDefault();
+results.innerHTML = "";
+let playerCount = 0;
+const playerList = await searchPlayers((searchFirst.value.trim() + " " + searchLast.value.trim()).trim());
+for (let player of playerList) {
+ const stats = await fetchStats(player.id);
+ if (stats) {
+   playerCount++;
+   const playerName = document.createElement("h2");
+   playerName.append(`${player.first_name} ${player.last_name} (${player.position})`);
+   const playerTeam = document.createElement("h3");
+   playerTeam.append(player.team.full_name);
+   const playerPoints = document.createElement("li");
+   playerPoints.append(`PPG: ${stats.pts}`);
+   const playerAssists = document.createElement("li");
+   playerAssists.append(`APG: ${stats.ast}`);
+   const playerRebounds = document.createElement("li");
+   playerRebounds.append(`RPG: ${stats.reb}`);
+   const playerSteals = document.createElement("li");
+   playerSteals.append(`SPG: ${stats.stl}`);
+   const playerBlocks = document.createElement("li");
+   playerBlocks.append(`BPG: ${stats.blk}`);
+   const playerStats = document.createElement("ul");
+   playerStats.append(playerPoints, playerAssists, playerRebounds, playerSteals, playerBlocks);
+   const playerProfile = document.createElement("div");
+   playerProfile.append(playerName, playerTeam, playerStats);
+   results.append(playerProfile);
+ }
+}
+if (playerCount === 0) {
+ const noResults = document.createElement("p");
+ noResults.append("Oops, looks like we couldn't find the player you were looking for... Make sure that the name you entered is spelled correctly and try again!");
+ results.append(noResults);
+}
+});
+//# sourceURL=pen.js
+ </script>
+
+
+</body>
+</html>
+
+</head>
+<body translate="no">
+<section>
+    <form action="">
+        <h3 class="mb-0">&nbsp;&nbsp;&nbsp;&nbsp;</h3>
+        <h1 class="mb-0">PROBABILITY</h1>
+        <h3 class="mb-0">&nbsp;&nbsp;&nbsp;&nbsp;</h3>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="text" id="searchFirst" name="searchFirst" placeholder="What is his line?">
+        <button>Enter</button>
+    </form>
+</section>
+<section id="results"></section>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-2c7831bb44f98c1391d6a4ffda0e1fd302503391ca806e7fcc7b9b87197aec26.js"></script>
+
+# CHATGPT CODE
+
+
+<meta charset="utf-8" />
+<title>Probability Calculator</title>
+</head>
+<body>
+<section>
+  <form>
+    <h1>PROBABILITY CALCULATOR</h1>
+    <input type="text" id="searchFirst" name="searchFirst" placeholder="Player Name">
+    <input type="text" id="searchLast" name="searchLast" placeholder="Last Name">
+    <input type="number" id="line" name="line" placeholder="Line">
+    <button type="button" onclick="calculateProbability()">Calculate</button>
+  </form>
+</section>
+<section id="results"></section>
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+  const searchPlayers = async (searchQuery) => {
+    const searchResults = await axios.get(
+      `https://www.balldontlie.io/api/v1/players?search=${searchQuery}&per_page=100`
+    );
+    return searchResults.data.data;
+  };
+
+  const fetchStats = async (id) => {
+    const fullStats = await axios.get(
+      `https://www.balldontlie.io/api/v1/season_averages?player_ids[]=${id}`
+    );
+    return fullStats.data.data[0];
+  };
+
+  const calculateProbability = async () => {
+    const searchFirst = document.querySelector("#searchFirst").value.trim();
+    const searchLast = document.querySelector("#searchLast").value.trim();
+    const line = document.querySelector("#line").value;
+
+    if (!searchFirst || !searchLast || !line) {
+      alert("Please fill out all fields.");
+      return;
+    }
+
+    const playerList = await searchPlayers(`${searchFirst} ${searchLast}`);
+    const player = playerList[0];
+    if (!player) {
+      alert("Player not found. Please check the spelling of the name.");
+      return;
+    }
+
+    const stats = await fetchStats(player.id);
+    if (!stats) {
+      alert("Player stats not found.");
+      return;
+    }
+
+    const ppg = stats.pts;
+    const probability = calculateBinomialProbability(line, ppg, 82);
+    displayResults(player, probability, line);
+  };
+
+  const calculateBinomialProbability = (x, p, n) => {
+    const q = 1 - p / 100;
+    const k = Math.floor(x);
+    let probability = 0;
+    for (let i = k; i <= n; i++) {
+      probability += nChooseK(n, i) * Math.pow(p / 100, i) * Math.pow(q, n - i);
+    }
+    return probability;
+  };
+
+  const nChooseK = (n, k) => {
+    let result = 1;
+    for (let i = 1; i <= k; i++) {
+      result *= (n - k + i) / i;
+    }
+    return result;
+  };
+
+  const displayResults = (player, probability, line) => {
+    const results = document.querySelector("#results");
+    results.innerHTML = "";
+
+    const playerName = document.createElement("h2");
+    playerName.textContent = `${player.first_name} ${player.last_name}`;
+    const playerTeam = document.createElement("h3");
+    playerTeam.textContent = `Team: ${player.team.full_name}`;
+    const playerStats = document.createElement("ul");
+    const playerPPG = document.createElement("li");
+    playerPPG.textContent = `PPG: ${playerStats.

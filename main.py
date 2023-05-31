@@ -2,12 +2,10 @@
 from flask import render_template  # import render_template from "public" flask libraries
 # import "packages" from "this" project
 from __init__ import app  # Definitions initialization
-from api.joke import joke_api # Blueprint import api definition
 from api.covid import covid_api # Blueprint import api definition
 
 from bp_projects.projects import app_projects # Blueprint directory import projects definition
 
-app.register_blueprint(joke_api) # register api routes
 app.register_blueprint(covid_api) # register api routes
 
 app.register_blueprint(app_projects) # register api routes
@@ -19,7 +17,7 @@ def page_not_found(e):
 
 @app.route('/')  # connects default URL to index() function
 def AP():
-    return render_template("AP.html")
+    return render_template("signup.html")
 
 @app.route('/stub/')  # connects /stub/ URL to stub() function
 def stub():

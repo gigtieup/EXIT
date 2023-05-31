@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .search-container {
+            margin: 1em;
+        }
+        .player-data {
+            margin: 1em;
+            border: 1px solid #000;
+            padding: 1em;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <div class="search-container">
+        <input type="text" id="playerName" placeholder="Enter NHL player name (LAST NAME First Name)">
+        <button onclick="searchPlayer()">Search</button>
+    </div>
+    <div class="player-data" id="playerData">
+        <!-- Player data will be inserted here -->
+    </div>
+
+    <script>
+        async function searchPlayer() {
+            const playerName = document.getElementById('playerName').value;
+            const options = {
+                method: 'GET',
+                url: `https://hockey-live-sk-data.p.rapidapi.com/player/${playerName}/NHL`,
+                params: {
+                    key: 'b034f54d9ae5dab25f5cc385cca146d6'
+                },
+                headers: {
+                    name: 'SATAN Miroslav',
+                    'X-RapidAPI-Key': '3d86dd31a2mshca1f32e22e2396cp1f7302jsn610cf54ceeb6',
+                    'X-RapidAPI-Host': 'hockey-live-sk-data.p.rapidapi.com'
+                }
+            };
+
+            try {
+                const response = await axios.request(options);
+                const data = response.data;
+
+                const playerDataElement = document.getElementById('playerData');
+                playerDataElement.innerHTML = ''; // Clear previous data
+
+                for (const key in data) {
+                    const value = data[key];
+                    if (typeof value === 'object' && value !== null) {
+                        // Handle nested object
+                        const nestedObjectElement = document.createElement('div');
+                        const title = document.createElement('h2');
+                        title.innerText = key;
+                        nestedObjectElement.appendChild(title);
+                        for (const nestedKey in value) {
+                            const nestedStats = document.createElement('p');
+                            nestedStats.innerText = `${nestedKey}: ${value[nestedKey]}`;
+                            nestedObjectElement.appendChild(nestedStats);
+                        }
+                        playerDataElement.appendChild(nestedObjectElement);
+                    } else {
+                        const stats = document.createElement('p');
+                        stats.innerText = `${key}: ${value}`;
+                        playerDataElement.appendChild(stats);
+                    }
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+    </script>
+</body>
+</html>

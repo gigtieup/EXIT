@@ -1,0 +1,111 @@
+<form autocomplete='off' class='form'>
+  <div class='control'>
+    <h1>
+      Account Creation
+    </h1>
+  </div>
+  <div class='control block-cube block-input'>
+    <input name='firstname' placeholder='First Name' type='text'>
+    <div class='bg-top'>
+      <div class='bg-inner'></div>
+    </div>
+    <div class='bg-right'>
+      <div class='bg-inner'></div>
+    </div>
+    <div class='bg'>
+      <div class='bg-inner'></div>
+    </div>
+  </div>
+  <div class='control block-cube block-input'>
+    <input name='lastname' placeholder='Last Name' type='text'>
+    <div class='bg-top'>
+      <div class='bg-inner'></div>
+    </div>
+    <div class='bg-right'>
+      <div class='bg-inner'></div>
+    </div>
+    <div class='bg'>
+      <div class='bg-inner'></div>
+    </div>
+  </div>
+  <div class='control block-cube block-input'>
+    <input name='username' placeholder='Username' type='text'>
+    <div class='bg-top'>
+      <div class='bg-inner'></div>
+    </div>
+    <div class='bg-right'>
+      <div class='bg-inner'></div>
+    </div>
+    <div class='bg'>
+      <div class='bg-inner'></div>
+    </div>
+  </div>
+  <div class='control block-cube block-input'>
+    <input name='password' placeholder='Password' type='password'>
+    <div class='bg-top'>
+      <div class='bg-inner'></div>
+    </div>
+    <div class='bg-right'>
+      <div class='bg-inner'></div>
+    </div>
+    <div class='bg'>
+      <div class='bg-inner'></div>
+    </div>
+  </div>
+  <button id='create-btn' class='btn block-cube block-cube-hover' type='button'>
+    <div class='bg-top'>
+      <div class='bg-inner'></div>
+    </div>
+    <div class='bg-right'>
+      <div class='bg-inner'></div>
+    </div>
+    <div class='bg'>
+      <div class='bg-inner'></div>
+    </div>
+    <span class='text'>Create</span>
+  </button>
+  <div class='credits'>
+    <a href='https://codepen.io/marko-zub/' target='_blank'></a>
+  </div>
+</form>
+
+<script>
+  document.getElementById('create-btn').addEventListener('click', function() {
+    var firstname = document.getElementsByName('firstname')[0].value;
+    var lastname = document.getElementsByName('lastname')[0].value;
+    var username = document.getElementsByName('username')[0].value;
+    var password = document.getElementsByName('password')[0].value;
+    
+    var data = {
+      firstname: firstname,
+      lastname: lastname,
+      username: username,
+      password: password
+    };
+    
+    fetch('http://127.0.0.1:8199/userList', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+    .then(function(response) {
+      if (response.ok) {
+        alert('Account created successfully!');
+        // Optionally redirect to another page after successful account creation
+        // window.location.href = 'http://127.0.0.1:5000/projects/NBA/';
+      } else {
+        alert('Failed to create an account.');
+      }
+    })
+    .catch(function(error) {
+      console.log(error);
+      alert('An error occurred while creating an account.');
+    });
+  });
+</script>
+
+<style>
+  /* Styles unchanged */
+</style>

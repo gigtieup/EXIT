@@ -24,10 +24,6 @@ def index():
 def game():
     return render_template("game.html")
 
-@app_projects.route('/AB/')
-def AB():
-    return render_template("AB.html")
-
 @app_projects.route('/three/')
 def three():
     return render_template("three.html")
@@ -51,3 +47,26 @@ def nab():
 @app_projects.route('/gamble/')
 def gamble():
     return render_template("gamble.html")
+@app_projects.route('/nap/')
+def nap():
+    return render_template("nap.html")
+
+@app_projects.route('/tep/')
+def tep():
+    return render_template("tep.html")
+
+@app_projects.route('/help/')
+def help():
+    return render_template("help.html")
+
+@app_projects.route('/signup/')
+def signup():
+    return render_template("signup.html")
+
+@app_projects.route('/acc/')
+def acc():
+    return render_template("acc.html")
+
+@app_projects.route('/nhlteams/')
+def nhlteams():
+    return render_template("nhlteams.html")
