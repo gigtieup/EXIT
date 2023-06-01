@@ -1,82 +1,122 @@
-
 <!DOCTYPE html>
 <html>
 <head>
-    <title>NHL Teams</title>
-    <style>
-        .team {
-            border: 1px solid black;
-            margin: 10px;
-            padding: 10px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-        }
-        .team img {
-            width: 50px;
-            height: 50px;
-            margin-right: 10px;
-        }
-        .team-info {
-            display: none;
-            margin-top: 10px;
-            padding: 10px;
-            border-top: 1px solid black;
-        }
-    </style>
+  <title>NHL Standings 2022</title>
+  <style>
+    table, th, td {
+      border: 1px solid black;
+      border-collapse: collapse;
+      padding: 5px;
+    }
+  </style>
 </head>
 <body>
-    <div id="teams"></div>
+  <h1>NHL Standings 2022</h1>
 
-    <script>
-        var teams = [
-            "Team1",
-            "Team2",
-            // And so on for other teams
-        ];
+  <h2>Western Conference</h2>
+  <table id="westernTable">
+    <tr>
+      <th>Position</th>
+      <th>Team</th>
+      <th>Games Played</th>
+      <th>Wins</th>
+      <th>Losses</th>
+      <th>Score</th>
+      <th>Points</th>
+      <th>Clinched</th>
+    </tr>
+  </table>
 
-        var teamsDiv = document.getElementById('teams');
+  <h2>Eastern Conference</h2>
+  <table id="easternTable">
+    <tr>
+      <th>Position</th>
+      <th>Team</th>
+      <th>Games Played</th>
+      <th>Wins</th>
+      <th>Losses</th>
+      <th>Score</th>
+      <th>Points</th>
+      <th>Clinched</th>
+    </tr>
+  </table>
 
-        teams.forEach(team => {
-            var teamDiv = document.createElement('div');
-            teamDiv.className = 'team';
+  <script>
+    fetch("https://hockey-live-sk-data.p.rapidapi.com/table/NHL/2022?key=b034f54d9ae5dab25f5cc385cca146d6", {
+  "method": "GET",
+  "headers": {
+    "x-rapidapi-key": "b034f54d9ae5dab25f5cc385cca146d6",
+    "x-rapidapi-host": "hockey-live-sk-data.p.rapidapi.com"
+  }
+})
+.then(response => {
+  if (!response.ok) { throw new Error("HTTP error " + response.status); }
+  return response.json();
+})
+.then(data => {
+  const conferences = data.conference;
+  for (let conferenceName in conferences) {
+    const conferenceTitle = document.createElement("h2");
+    conferenceTitle.innerText = conferenceName;
+    document.body.appendChild(conferenceTitle);
 
-            var logo = document.createElement('img');
-            logo.src = 'logo-url'; // Replace this with actual logo URL
+    const standingsTable = document.createElement("table");
+    const headerRow = document.createElement("tr");
+    const headers = ["Position", "Team", "GP", "Wins", "Losses", "Score", "Points", "Clinched"];
+    for (let header of headers) {
+      const th = document.createElement("th");
+      th.innerText = header;
+      headerRow.appendChild(th);
+    }
+    standingsTable.appendChild(headerRow);
 
-            var nameDiv = document.createElement('div');
-            nameDiv.innerText = team;
+    const conference = conferences[conferenceName];
+    for (let position in conference) {
+      const team = conference[position];
+      const row = document.createElement("tr");
 
-            var infoDiv = document.createElement('div');
-            infoDiv.className = 'team-info';
+      const positionCell = document.createElement("td");
+      positionCell.innerText = position;
+      row.appendChild(positionCell);
 
-            teamDiv.appendChild(logo);
-            teamDiv.appendChild(nameDiv);
-            teamDiv.appendChild(infoDiv);
-            
-            teamDiv.addEventListener('click', function() {
-                if (infoDiv.style.display === 'none') {
-                    fetch(`https://hockey-live-sk-data.p.rapidapi.com/team/${team}/nhl/2023?key=b034f54d9ae5dab25f5cc385cca146d6`, {
-                        method: "GET",
-                        headers: {
-                            "x-rapidapi-host": "hockey-live-sk-data.p.rapidapi.com",
-                            "x-rapidapi-key": "b034f54d9ae5dab25f5cc385cca146d6"
-                        }
-                    })
-                    .then(response => response.json())
-                    .then(data => {
-                        infoDiv.innerText = 'Team Info: ' + JSON.stringify(data); // Format this as per your needs
-                        infoDiv.style.display = 'block';
-                    })
-                    .catch(err => console.error(err));
-                } else {
-                    infoDiv.style.display = 'none';
-                }
-            });
+      const teamCell = document.createElement("td");
+      teamCell.innerText = team.longname;
+      row.appendChild(teamCell);
 
-            teamsDiv.appendChild(teamDiv);
-        });
-    </script>
+      const gpCell = document.createElement("td");
+      gpCell.innerText = team.gp;
+      row.appendChild(gpCell);
+
+      const winsCell = document.createElement("td");
+      winsCell.innerText = team.wins;
+      row.appendChild(winsCell);
+
+      const lossesCell = document.createElement("td");
+      lossesCell.innerText = team.losts;
+      row.appendChild(lossesCell);
+
+      const scoreCell = document.createElement("td");
+      scoreCell.innerText = team.score;
+      row.appendChild(scoreCell);
+
+      const pointsCell = document.createElement("td");
+      pointsCell.innerText = team.points;
+      row.appendChild(pointsCell);
+
+      const clinchCell = document.createElement("td");
+      clinchCell.innerText = team.clinch === 'x' ? 'Yes' : 'No';
+      row.appendChild(clinchCell);
+
+      standingsTable.appendChild(row);
+    }
+    document.body.appendChild(standingsTable);
+  }
+})
+.catch(error => {
+  console.error("Error:", error);
+});
+
+  </script>
+
 </body>
 </html>
-

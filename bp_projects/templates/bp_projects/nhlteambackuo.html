@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>NHL Standings 2022</title>
+  <style>
+    table, th, td {
+      border: 1px solid black;
+      border-collapse: collapse;
+      padding: 5px;
+    }
+  </style>
+</head>
+<body>
+  <h1>NHL Standings 2022</h1>
+
+  <h2>Western Conference</h2>
+  <table id="westernTable">
+    <tr>
+      <th>Position</th>
+      <th>Team</th>
+      <th>Games Played</th>
+      <th>Wins</th>
+      <th>Losses</th>
+      <th>Score</th>
+      <th>Points</th>
+      <th>Clinched</th>
+    </tr>
+  </table>
+
+  <h2>Eastern Conference</h2>
+  <table id="easternTable">
+    <tr>
+      <th>Position</th>
+      <th>Team</th>
+      <th>Games Played</th>
+      <th>Wins</th>
+      <th>Losses</th>
+      <th>Score</th>
+      <th>Points</th>
+      <th>Clinched</th>
+    </tr>
+  </table>
+
+  <script>
+    const API_KEY = 'b034f54d9ae5dab25f5cc385cca146d6';
+    const API_URL = `https://hockey-live-sk-data.p.rapidapi.com/table/NHL/2022?key=${API_KEY}`;
+
+    fetch(API_URL)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error("HTTP error " + response.status);
+        }
+        return response.json();
+        console.log(data);
+      })
+      .then(data => {
+        const westernConference = data.conference['Western conference'];
+        const easternConference = data.conference['Eastern conference'];
+        const westernTable = document.getElementById('westernTable');
+        const easternTable = document.getElementById('easternTable');
+
+        for (let key in westernConference) {
+          const row = document.createElement('tr');
+          row.innerHTML = `<td>${key}</td>
+                           <td>${westernConference[key].longname}</td>
+                           <td>${westernConference[key].gp}</td>
+                           <td>${westernConference[key].wins}</td>
+                           <td>${westernConference[key].losts}</td>
+                           <td>${westernConference[key].score}</td>
+                           <td>${westernConference[key].points}</td>
+                           <td>${westernConference[key].clinch}</td>`;
+          westernTable.appendChild(row);
+        }
+
+        for (let key in easternConference) {
+          const row = document.createElement('tr');
+          row.innerHTML = `<td>${key}</td>
+                           <td>${easternConference[key].longname}</td>
+                           <td>${easternConference[key].gp}</td>
+                           <td>${easternConference[key].wins}</td>
+                           <td>${easternConference[key].losts}</td>
+                           <td>${easternConference[key].score}</td>
+                           <td>${easternConference[key].points}</td>
+                           <td>${easternConference[key].clinch}</td>`;
+          easternTable.appendChild(row);
+        }
+      })
+      .catch(err => {
+        console.error("Failed to fetch data from API:", err);
+      });
+  </script>
+
+</body>
+</html>
