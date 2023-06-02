@@ -139,9 +139,20 @@ p {
     <section id="results"></section>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-2c7831bb44f98c1391d6a4ffda0e1fd302503391ca806e7fcc7b9b87197aec26.js"></script>
-
+    <body translate="no">
+      <section>
+        <form action="">
+          <!-- ...existing form elements... -->
+          <input type="number" id="pointsLine" name="pointsLine" placeholder="Points Line">
+          <button>Search Stats</button>
+        </form>
+      </section>
+      <section id="results"></section>
+      <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+      <script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-2c7831bb44f98c1391d6a4ffda0e1fd302503391ca806e7fcc7b9b87197aec26.js"></script>
   
       <script id="rendered-js" >
+        
 const button = document.querySelector("button");
 const searchFirst = document.querySelector("#searchFirst");
 const searchLast = document.querySelector("#searchLast");
@@ -193,6 +204,55 @@ button.addEventListener("click", async event => {
     results.append(noResults);
   }
 });
+
+button.addEventListener("click", async event => {
+      event.preventDefault();
+      results.innerHTML = "";
+      let playerCount = 0;
+      const playerList = await searchPlayers((searchFirst.value.trim() + " " + searchLast.value.trim()).trim());
+      for (let player of playerList) {
+        const stats = await fetchStats(player.id);
+        if (stats) {
+          playerCount++;
+          const playerName = document.createElement("h3");
+          playerName.append(`${player.first_name} ${player.last_name} (${player.position})`);
+          const playerTeam = document.createElement("h3");
+          playerTeam.append(player.team.full_name);
+          const playerPoints = document.createElement("li");
+          playerPoints.append(`PPG: ${stats.pts}`);
+          const playerAssists = document.createElement("li");
+          playerAssists.append(`APG: ${stats.ast}`);
+          const playerRebounds = document.createElement("li");
+          playerRebounds.append(`RPG: ${stats.reb}`);
+          const playerSteals = document.createElement("li");
+          playerSteals.append(`SPG: ${stats.stl}`);
+          const playerBlocks = document.createElement("li");
+          playerBlocks.append(`BPG: ${stats.blk}`);
+          const playerStats = document.createElement("ul");
+          playerStats.append(playerPoints, playerAssists, playerRebounds, playerSteals, playerBlocks);
+          const playerProfile = document.createElement("div");
+          playerProfile.append(playerName, playerTeam, playerStats);
+
+          // Compare points line with PPG
+          const pointsLine = document.querySelector("#pointsLine").value;
+          const betResult = document.createElement("div");
+          betResult.className = "bet-result";
+          if (pointsLine < stats.pts) {
+            betResult.textContent = "This is a good over bet";
+          } else {
+            betResult.textContent = "This is a good under bet";
+          }
+
+          results.append(playerProfile, betResult);
+        }
+      }
+      if (playerCount === 0) {
+        const noResults = document.createElement("p");
+        noResults.append("Oops, looks like we couldn't find the player you were looking for... Make sure that the name you entered is spelled correctly and try again!");
+        results.append(noResults);
+      }
+    });
+    
 //# sourceURL=pen.js
     </script>
 
