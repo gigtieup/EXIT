@@ -1,75 +1,116 @@
 
+
+</html>
 <!DOCTYPE html>
 <html lang="en" >
 
 <head>
   <meta charset="UTF-8">
-  
 
-    <link rel="apple-touch-icon" type="image/png" href="https://cpwebassets.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png" />
-
-    <meta name="apple-mobile-web-app-title" content="CodePen">
-
-    <link rel="shortcut icon" type="image/x-icon" href="https://cpwebassets.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico" />
-
-    <link rel="mask-icon" type="image/x-icon" href="https://cpwebassets.codepen.io/assets/favicon/logo-pin-b4b4269c16397ad2f0f7a01bcdf513a1994f4c94b8af2f191c09eb0d601762b1.svg" color="#111" />
-
-
-
-  
-  <title>CodePen - help page</title>
-    <link rel="canonical" href="https://codepen.io/RocktimSaikia/pen/BaNrqEo" />
-  
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-
-  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css'>
-<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css'>
-  
 <style>
-body{
-  margin-top: 50px;
+* {
+    all: unset;
+    display: revert;
+    box-sizing: border-box;
 }
 
-h1{
-  font-weight: 800 !important;
-  font-size: 50px;
+[default-styles] {
+    all: revert;
 }
 
-h6{
-  color: #716f6f
+html {
+    font-family: monospace;
+    font-size: 16px;
+    color: rgb(0, 0, 0);
+    background-color: rgb(153, 204, 255);
+    padding: 4em;
 }
 
-.img-wrapper{
-  width: 500px;
+h1 {
+    font-family: 'monospace', monospace;
+  font-weight: 900;
+  font-size: 7vw;
+  line-height: 1;
+  color: #ffffff;
+  text-align: center;
+  -webkit-text-stroke: 2px #ffffff;
+  text-stroke: 2px #000000;
+  -webkit-text-fill-color: transparent;
+  text-fill-color: transparent;
+  color: transparent;
 }
 
-img{
-  height: 100%;
-  width: 100%;
+h2 {
+  font-family: 'revert', serif;
+  font-weight: 0;
+  font-size: 1vw;
+  line-height: 1;
+  color: #000000;
+  text-align: center;
+  -webkit-text-stroke: 2px #ffffff;
+  text-stroke: 2px #000000;
+  -webkit-text-fill-color: transparent;
+  text-fill-color: transparent;
+  color: transparent;
 }
 
-input, textarea, select{
-  background: #f7f9f8 !important;
+h3 {
+    font-size: 1.5em;
+    margin: 1rem 0;
+    font-weight: 700;
 }
 
-.email-us{
-  text-decoration: underline;
+input {
+    color: rgb(64, 62, 62);
+    background-color: rgb(255, 255, 255);
+    border: 2px solid rgba(23, 23, 23, 0.5);
+    border-radius: 8px;
+    text-align: center;
+    padding: 1em;
+    margin-right: 1rem;
+    transition: all 0.25s ease;
 }
 
-label{
-  font-weight: 600;
-  color: #716f6f
+input::placeholder {
+    color: rgba(8, 8, 8, 0.5);
 }
 
-button{
-  float: right;
-}
-button span{
-  margin-left: 8px;  
+input:focus {
+    border: 2px solid rgb(33, 33, 33);
+    transition: all 0.25s ease;
 }
 
-button i{
-  margin: 0px 8px;
+button {
+    color: rgb(25, 25, 25);
+    background-color: rgba(102, 178, 255, 0.8);
+    padding: 1em;
+    border-radius: 8px;
+    transition: all 0.25s ease;
+    font-weight: 700;
+}
+
+button:hover {
+    background-color: rgb(85, 85, 85);
+    transition: all 0.25s ease;
+}
+
+ul {
+    list-style-type: none;
+}
+
+li {
+    margin: 0.5rem 0;
+}
+
+div {
+    padding: 1em 2em;
+    margin: 2em 0;
+    border-radius: 16px;
+    transition: all 0.5s ease;
+}
+
+p {
+    margin: 2rem 0;
 }
 </style>
 
@@ -82,51 +123,81 @@ button i{
 </head>
 
 <body translate="no">
-  <div class="container">
-  <div class="row">
-  <div class="col-md-6">
-    <h1>Let's get you</br> some help!</h1>
-    <h6>Have any issue? Send us an <span class="email-us">email.</span></h6>
-    <div class="img-wrapper">
-    <img src="https://i.ibb.co/bWfN3Qy/undraw-onboarding-o8mv-1.png" alt="undraw-onboarding-o8mv-1" border="0">
-      </div>
-  </div>
-  
-  <div class="col-md-6">
-    <form>
-  <div class="form-group">
-    <label for="list">Username</label>
-    <input type="text" class="form-control" id="list" aria-describedby="emailHelp">
-  </div>
-  <div class="form-group">
-    <label for="tags">Password</label>
-    <input type="text" class="form-control" id="tags">
-  </div>
-      
-    <div class="form-group">
-    <label for="describe">What seems to be your problem?</label>
-    <textarea type="text" class="form-control" id="describe" rows="5"></textarea>
-  </div>
-      
-      <div class="form-group">
-    <label for="exampleFormControlSelect1">Rate our website</label>
-    <select class="form-control" id="exampleFormControlSelect1">
-      <option>1</option>
-      <option>2</option>
-      <option>3</option>
-      <option>4</option>
-      <option>5</option>
-    </select>
-  </div>
-            
-<button type="button" class="btn btn-primary"><span>Submit</span> <i class="fas fa-long-arrow-alt-right"></i></button>
-  </div>
-    
-  </div>
-</div>
+  <section>
+        <form action=""> 
+            <h3 class="mb-0">&nbsp;&nbsp;&nbsp;&nbsp;</h3>  
+            <h1 class="mb-0">MINDLESS SHEEP</h1>
+            <h3 class="mb-0"></h3>
+            <h2 class="mb-0">TRACK YOUR FAVORITE NBA PLAYER!</h2>
+            <h3 class="mb-0">&nbsp;&nbsp;&nbsp;&nbsp;</h3>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="text" id="searchFirst" name="searchFirst" placeholder="First Name">
+            <input type="text" id="searchLast" name="searchLast" placeholder="Last Name">
+            <button>Search Stats</button>
+        </form>
+    </section>
+    <section id="results"></section>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-2c7831bb44f98c1391d6a4ffda0e1fd302503391ca806e7fcc7b9b87197aec26.js"></script>
 
   
+      <script id="rendered-js" >
+const button = document.querySelector("button");
+const searchFirst = document.querySelector("#searchFirst");
+const searchLast = document.querySelector("#searchLast");
+const results = document.querySelector("#results");
+
+const searchPlayers = async searchQuery => {
+  const searchResults = await axios.get(`https://www.balldontlie.io/api/v1/players?search=${searchQuery}&per_page=100`);
+  return searchResults.data.data;
+};
+
+const fetchStats = async id => {
+  const fullStats = await axios.get(`https://www.balldontlie.io/api/v1/season_averages?player_ids[]=${id}`);
+  return fullStats.data.data[0];
+};
+
+button.addEventListener("click", async event => {
+  event.preventDefault();
+  results.innerHTML = "";
+  let playerCount = 0;
+  const playerList = await searchPlayers((searchFirst.value.trim() + " " + searchLast.value.trim()).trim());
+  for (let player of playerList) {
+    const stats = await fetchStats(player.id);
+    if (stats) {
+      playerCount++;
+      const playerName = document.createElement("h3");
+      playerName.append(`${player.first_name} ${player.last_name} (${player.position})`);
+      const playerTeam = document.createElement("h3");
+      playerTeam.append(player.team.full_name);
+      const playerPoints = document.createElement("li");
+      playerPoints.append(`PPG: ${stats.pts}`);
+      const playerAssists = document.createElement("li");
+      playerAssists.append(`APG: ${stats.ast}`);
+      const playerRebounds = document.createElement("li");
+      playerRebounds.append(`RPG: ${stats.reb}`);
+      const playerSteals = document.createElement("li");
+      playerSteals.append(`SPG: ${stats.stl}`);
+      const playerBlocks = document.createElement("li");
+      playerBlocks.append(`BPG: ${stats.blk}`);
+      const playerStats = document.createElement("ul");
+      playerStats.append(playerPoints, playerAssists, playerRebounds, playerSteals, playerBlocks);
+      const playerProfile = document.createElement("div");
+      playerProfile.append(playerName, playerTeam, playerStats);
+      results.append(playerProfile);
+    }
+  }
+  if (playerCount === 0) {
+    const noResults = document.createElement("p");
+    noResults.append("Oops, looks like we couldn't find the player you were looking for... Make sure that the name you entered is spelled correctly and try again!");
+    results.append(noResults);
+  }
+});
+//# sourceURL=pen.js
+    </script>
+
   
 </body>
 
 </html>
+
