@@ -1,67 +1,88 @@
 function getData(name, stat) {
-    let playerheader = {
-      "search": name
-    };
-  
-    fetch("https://www.balldontlie.io/api/v1/players", playerheader)
-      .then(response => response.json())
-      .then(json => {
-        const player_id = json.data[0].id;
-        const currentDate = new Date(new Date().setMonth(new Date().getMonth() - 1)).toISOString().split('T')[0];
-        let gamesheader = {
-          "player_ids": [player_id],
-          "start_date": currentDate
-        };
-  
-        fetch(`https://www.balldontlie.io/api/v1/stats?player_ids=${player_id}&start_date=${currentDate}`)
-          .then(response => response.json())
-          .then(json => {
-            const player_games = json.data;
-            // Filter the specific stat
-            const filteredStats = player_games.filter(game => game.stat_name === stat);
-            // Process the filtered stats data here
-            displayStats(filteredStats); // Call function to display stats
-          })
-          .catch(error => {
-            // Handle any errors
-            console.error(error);
-          });
-      })
-      .catch(error => {
-        // Handle any errors
-        console.error(error);
-      });
-  }
-  
-  // Function to display the stats on the web page
-  function displayStats(stats) {
-    const statsContainer = document.getElementById('stats-container');
-    statsContainer.innerHTML = ''; // Clear previous content
-  
-    if (stats.length === 0) {
-    statsContainer.textContent = "Cannot Find Stats For " + player;
-     return;
-    }
-  
-    stats.forEach(stat => {
-      const statElement = document.createElement('p');
-      statElement.textContent = `${stat.game.date} - ${stat.stat_name}: ${stat.value}`;
-      statsContainer.appendChild(statElement);
+  let playerheader = {
+    "search": name
+  };
+
+  // Fetch the data by name
+  fetch(`https://www.balldontlie.io/api/v1/players?search=${name}`, playerheader)
+    .then(response => response.json())
+    .then(json => {
+      const player_id = json.data[0].id;
+      // Gets the player id starting at 1 (0)
+      const currentDate = new Date(new Date().setMonth(new Date().getMonth() - 2)).toISOString().split('T')[0];
+      // Gets the data 2 months beforer today.
+      let gamesheader = {
+        "player_ids": [player_id],
+        "start_date": currentDate
+      };
+      console.log(player_id)
+
+      // Fetching the stats of the player 2 months before today
+      fetch(`https://www.balldontlie.io/api/v1/stats?player_ids[]=${player_id}&start_date=${currentDate}`)
+        .then(response => response.json())
+        .then(json => {
+          console.log(json); // Logs the API response to inspect the data
+          const player_games = json.data;
+          // Filter the specific stat
+          let filteredStats = []
+          player_games.forEach(game => filteredStats.push(game[stat]));
+          console.log(filteredStats); // Log the filtered stats to see if any stats are found
+          // Process the filtered stats data here
+          const userInput = Number(prompt('What is his line?'));
+          // Asking for the number of the line
+          const percentLikelihood = calculatePercentLikelihood(filteredStats, userInput);
+          // Calculates the PercentLikelihood
+          displayStats(name, filteredStats, percentLikelihood); // Pass name to the displayStats function
+        })
+        .catch(error => {
+          // Handle any errors
+          console.error(error);
+        });
+    })
+    .catch(error => {
+      // Handle any errors
+      console.error(error);
     });
+}
+
+// Percentage hit rate
+function calculatePercentLikelihood(stats, userInput) {
+  // if statement to calculate stats
+  if (stats.length === 0) {
+    return 0;
   }
-  
 
-  // Usage: Pass the player's name and the desired stat to the `getData` function
-  getData( "Jimmy Butler", "pts");
-  
+  let count = 0;
+  stats.forEach(stat => {
+    if (stat >= userInput) {
+      count++;
+    }
+  });
 
-// How to add query parameters to link for Fetch.API...
-// Search up: How to get today's date in javascript & How to 1 month before today in javascript.
-// Calculate how many times it hits using a for loop to iterate through the data.
+  return (count / stats.length) * 100;
+  // divides count and stats in order to calculate percent
+}
 
+// Function to display the stats and hit rate on the web page
+function displayStats(name, stats, percentLikelihood) {
+  const statsContainer = document.getElementById('stats-container');
+  statsContainer.innerHTML = '';
 
-// This searches the ID based on the players name and retrieves its stats.
+  if (stats.length === 0) {
+    statsContainer.textContent = 'No stats found.';
+    return;
+  }
+  // If statement for the stats
 
-// What we are doing: perfoming calculations using someone else's backend. Using our own would be extensive and would take significant amounts of time.
+  const statsElement = document.createElement('p');
+  statsElement.textContent = `${name}'s Stats: ${stats.join(', ')}`;
+  // Returns the name of the player inputted and then the stats after
+  statsContainer.appendChild(statsElement);
 
-// I am using JSON to store the NBA stat data. Specifically I am entering a start date (1 month before today) and fetching stats from that time period.
+  const percentElement = document.createElement('p');
+  percentElement.textContent = `The percentage likelihood of the bet hitting is ${percentLikelihood.toFixed(2)}%.`;
+  // Displays the percent likely of that bet hitting
+  statsContainer.appendChild(percentElement);
+}
+
+// Usage: Pass the player's name and the desired stat to the `getData` function
