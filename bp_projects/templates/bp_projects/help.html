@@ -144,13 +144,40 @@ p {
         <form action="">
           <!-- ...existing form elements... -->
           <input type="number" id="pointsLine" name="pointsLine" placeholder="Points Line">
-          <button>Search Stats</button>
+          <button>Points Stats</button>
         </form>
       </section>
       <section id="results"></section>
       <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
       <script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-2c7831bb44f98c1391d6a4ffda0e1fd302503391ca806e7fcc7b9b87197aec26.js"></script>
-  
+      <input type="number" id="assistLine" name="assistLine" placeholder="Assist Line">
+      <button>Assist Stats</button>
+    </form>
+  </section>
+  <section id="results"></section>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-2c7831bb44f98c1391d6a4ffda0e1fd302503391ca806e7fcc7b9b87197aec26.js"></script>
+  <input type="number" id="reboundsLine" name="reboundsLine" placeholder="Rebound Line">
+      <button>Rebound Stats</button>
+    </form>
+  </section>
+  <section id="results"></section>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-2c7831bb44f98c1391d6a4ffda0e1fd302503391ca806e7fcc7b9b87197aec26.js"></script>
+  <input type="number" id="stealsLine" name="stealsLine" placeholder="Steals Line">
+      <button>Steal Stats</button>
+    </form>
+  </section>
+  <section id="results"></section>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-2c7831bb44f98c1391d6a4ffda0e1fd302503391ca806e7fcc7b9b87197aec26.js"></script>
+  <input type="number" id="blocksLine" name="blocksLine" placeholder="Block Line">
+      <button>Blocks Stats</button>
+    </form>
+  </section>
+  <section id="results"></section>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-2c7831bb44f98c1391d6a4ffda0e1fd302503391ca806e7fcc7b9b87197aec26.js"></script>
       <script id="rendered-js" >
         
 const button = document.querySelector("button");
@@ -167,43 +194,6 @@ const fetchStats = async id => {
   const fullStats = await axios.get(`https://www.balldontlie.io/api/v1/season_averages?player_ids[]=${id}`);
   return fullStats.data.data[0];
 };
-
-button.addEventListener("click", async event => {
-  event.preventDefault();
-  results.innerHTML = "";
-  let playerCount = 0;
-  const playerList = await searchPlayers((searchFirst.value.trim() + " " + searchLast.value.trim()).trim());
-  for (let player of playerList) {
-    const stats = await fetchStats(player.id);
-    if (stats) {
-      playerCount++;
-      const playerName = document.createElement("h3");
-      playerName.append(`${player.first_name} ${player.last_name} (${player.position})`);
-      const playerTeam = document.createElement("h3");
-      playerTeam.append(player.team.full_name);
-      const playerPoints = document.createElement("li");
-      playerPoints.append(`PPG: ${stats.pts}`);
-      const playerAssists = document.createElement("li");
-      playerAssists.append(`APG: ${stats.ast}`);
-      const playerRebounds = document.createElement("li");
-      playerRebounds.append(`RPG: ${stats.reb}`);
-      const playerSteals = document.createElement("li");
-      playerSteals.append(`SPG: ${stats.stl}`);
-      const playerBlocks = document.createElement("li");
-      playerBlocks.append(`BPG: ${stats.blk}`);
-      const playerStats = document.createElement("ul");
-      playerStats.append(playerPoints, playerAssists, playerRebounds, playerSteals, playerBlocks);
-      const playerProfile = document.createElement("div");
-      playerProfile.append(playerName, playerTeam, playerStats);
-      results.append(playerProfile);
-    }
-  }
-  if (playerCount === 0) {
-    const noResults = document.createElement("p");
-    noResults.append("Oops, looks like we couldn't find the player you were looking for... Make sure that the name you entered is spelled correctly and try again!");
-    results.append(noResults);
-  }
-});
 
 button.addEventListener("click", async event => {
       event.preventDefault();
@@ -235,15 +225,51 @@ button.addEventListener("click", async event => {
 
           // Compare points line with PPG
           const pointsLine = document.querySelector("#pointsLine").value;
-          const betResult = document.createElement("div");
-          betResult.className = "bet-result";
+          const betPoints = document.createElement("div");
+          betPoints.className = "bet-result";
           if (pointsLine < stats.pts) {
-            betResult.textContent = "This is a good over bet";
+            betPoints.textContent = "This is a good over bet";
           } else {
-            betResult.textContent = "This is a good under bet";
+            betPoints.textContent = "This is a good under bet";
           }
 
-          results.append(playerProfile, betResult);
+          const assistLine = document.querySelector("#assistLine").value;
+          const betAssist = document.createElement("div");
+          betAssist.className = "bet-result";
+          if (assistLine < stats.ast) {
+            betAssist.textContent = "This is a good over bet";
+          } else {
+            betAssist.textContent = "This is a good under bet";
+          }
+
+          const reboundsLine = document.querySelector("#reboundsLine").value;
+          const betRebounds = document.createElement("div");
+          betRebounds.className = "bet-result";
+          if (reboundsLine < stats.reb) {
+            betRebounds.textContent = "This is a good over bet";
+          } else {
+            betRebounds.textContent = "This is a good under bet";
+          }
+
+          const stealsLine = document.querySelector("#stealsLine").value;
+          const betSteals = document.createElement("div");
+          betSteals.className = "bet-result";
+          if (stealsLine < stats.stl) {
+            betSteals.textContent = "This is a good over bet";
+          } else {
+            betSteals.textContent = "This is a good under bet";
+          }
+
+          const blocksLine = document.querySelector("#blocksLine").value;
+          const betBlocks = document.createElement("div");
+          betBlocks.className = "bet-result";
+          if (blocksLine < stats.blk) {
+            betBlocks.textContent = "This is a good over bet";
+          } else {
+            betBlocks.textContent = "This is a good under bet";
+          }
+
+          results.append(playerProfile, betPoints, betAssist, betRebounds, betSteals, betBlocks);
         }
       }
       if (playerCount === 0) {
