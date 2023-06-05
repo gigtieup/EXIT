@@ -67,6 +67,14 @@ def signup():
 def acc():
     return render_template("acc.html")
 
-@app_projects.route('/nhlteams/')
-def nhlteams():
-    return render_template("nhlteams.html")
+@app_projects.route('/nhl_team/')
+def nhl_team():
+    return render_template("nhl_teams.html")
+
+@app_projects.route('/hitrate/')
+def hitrate():
+    return render_template("gambling.html")
+
+@app_projects.route('/gamblinghelp/')
+def gamblinghelp():
+    return render_template("gambling.js")
