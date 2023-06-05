@@ -73,8 +73,8 @@ def nhl_team():
 
 @app_projects.route('/hitrate/')
 def hitrate():
-    return render_template("gambling.html")
+    return render_template("hitrate.html")
 
-@app_projects.route('/gamblinghelp/')
-def gamblinghelp():
+@app_projects.route('/gambling/')
+def gambling():
     return render_template("gambling.js")
