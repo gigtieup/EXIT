@@ -1,25 +1,19 @@
-## [Flask Portfolio Starter](https://nighthawkcodingsociety.com/projectsearch/details/Flask%20Portfolio%20Starter)
-Runtime link: https://portfolio.nighthawkcodingsociety.com/
-### Idea
-Starter code should be fun and practical.
-### Visual thoughts
-#### Organize with Bootstrap menu 
-#### Add some color and fun through VANTA Visuals (birds, halo, solar, net)
-#### Show some practical and fun links (hrefs) like Twitter, Git, Youtube
-#### Show project specific links (hrefs) per page
+Runtime link: https://mindlessheep.duckdns.org/
+### Our Website
+Website Description: NBA and NHL Game and Player Stats Tracker with Betting Analysis
 
-### Implementation progress (August 13th, 2021)
-#### Project entry point is main.py, this enables Flask Web App and provides capability to renders templates (HTML files)
-#### The main.py is the  Web Server Gateway Interface, essentially it contains a HTTP route and HTML file relationship.  The Python code constructs WSGI relationships for index, kangaroos, walruses, and hawkers.
-#### The project structure contains many directories and files.  The template directory (containing html files) and static directory (containing js files) are common standards for HTML coding.  Static files can be pictures and videos, in this project they are mostly javascript backgrounds.
-#### WSGI templates: index.html, kangaroos.html, ... are aligned with routes in main.py.
-#### Other templates support WSGI templates.  The base.html template contains common Head, Style, Body, Script definitions.  WSGI templates often "include" or "extend" these templates.  This is a way to reuse code.
-#### The VANTA javascript statics (backgrounds) are shown and defaulted in base.html (birds), but are block replaced as needed in other templates (solar, net, ...)
-#### The Bootstrap Navbar code is in navbar.html. The base.html code includes navbar.html.  The WSGI html files extend base.html files.  This is a process of management and correlation to optimize code management.  For instance, if the menu changes discovery of navbar.html is easy, one change reflects on all WSGI html files. 
-#### Jinja2 variables usage is to isolate data and allow redefinitions of attributes in templates.  Observe "{% set variable = %}" syntax for definition and "{{ variable }}" for reference.
-#### The base.html uses combination of Bootstrap grid styling and custom CSS styling.  Grid styling in observe with the "<Col-3>" markers.  A Bootstrap Grid has a width of 12, thus four "Col-3" markers could fit on a Grid row.
-#### A key purpose of this project is to embed links to other content.  The "href=" definition embeds hyperlinks into the rendered HTML.  The base.html file shows usage of "href={{github}}", the "{{github}}" is a Jinja2 variable.  Jinja2 variables are pre-processed by Python, a variable swap with value, before being sent to the browser.
+- Welcome to our comprehensive sports website that caters to basketball and hockey enthusiasts! We provide a user-friendly platform that tracks NBA and NHL game and player statistics, as well as offers betting analysis and hit rate calculations based on user input. Let's delve into the various sections of our website:
 
-### IDE management (things that happened beyond plan)
-#### Recall on ".gitignore" solution to the pains of temporary files.  Start a ".gitignore" and avoid promoting temporary files to Git, for instance IDE xml files.
-#### A project needs to establish a "requirements.txt" to keep track of Python packages used by the project.  This help in other IDEs and Deployment.  IntelliJ has menu Tool -> Sync Python Requirements to start file. 
+1. NBA Game and Player Stats:
+Our website provides up-to-date information on NBA games, scores, schedules, and results. You can explore detailed game statistics, such as points, rebounds, assists, steals, blocks, and shooting percentages for individual players and teams. We also offer season-long statistics, allowing you to track player and team performance over time. With our intuitive interface, you can easily filter and sort data based on specific criteria and compare player or team statistics.
+
+2. NHL Game and Player Stats:
+For hockey fans, our website offers comprehensive coverage of NHL games. Stay informed about game outcomes, live scores, and schedules. Dive into detailed player statistics, including goals, assists, plus/minus rating, minutes, and other relevant metrics. Track team performance throughout the season and gain insights into player contributions. Similar to the NBA section, our NHL stats section provides powerful filtering and sorting options to suit your preferences.
+
+3. Betting Stats and Hit Rate Calculation:
+To assist users in making informed betting decisions, we have dedicated sections that focus on betting statistics and hit rate calculations. Here, you can find historical data on teams' and players' performances in specific game situations, such as home vs. away games, recent form, head-to-head matchups, and more. Additionally, you can input your own betting data, including wagers made, outcomes, and odds, to calculate your personal hit rate and assess your betting success.
+
+4. Fun Extra Stats:
+We added a section where it easily allows usres to select and NBA team and then they can push a button and gets the players that play on that NBA team. There is also a section where users can input the first or last name of someone and then it will give them a list of NBA players that have the same first or last name.
+
+- Our website prioritizes user experience and presents information in a visually appealing and easily understandable manner. Whether you are a passionate fan seeking in-depth sports analysis or an individual looking to optimize your betting strategy, our website aims to fulfill your needs. Stay connected to the world of basketball, hockey, and sports betting with our reliable and feature-rich platform!
