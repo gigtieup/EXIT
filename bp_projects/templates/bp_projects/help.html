@@ -178,6 +178,7 @@ p {
   <section id="results"></section>
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-2c7831bb44f98c1391d6a4ffda0e1fd302503391ca806e7fcc7b9b87197aec26.js"></script>
+      
       <script id="rendered-js" >
         
 const button = document.querySelector("button");
@@ -286,4 +287,195 @@ button.addEventListener("click", async event => {
 </body>
 
 </html>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>NBA Team Players</title>
+    <script src="script.js"></script>
+</head>
+<body>
+    <h1>NBA Team Players</h1>
+    <label for="team">Select a team:</label>
+    <select id="team">
+      <option value="ATL">Atlanta Hawks</option>
+      <option value="BOS">Boston Celtics</option>
+      <option value="BKN">Brooklyn Nets</option>
+      <option value="CHA">Charlotte Hornets</option>
+      <option value="CHI">Chicago Bulls</option>
+      <option value="CLE">Cleveland Cavaliers</option>
+      <option value="DAL">Dallas Mavericks</option>
+      <option value="DEN">Denver Nuggets</option>
+      <option value="DET">Detroit Pistons</option>
+      <option value="GSW">Golden State Warriors</option>
+      <option value="HOU">Houston Rockets</option>
+      <option value="IND">Indiana Pacers</option>
+      <option value="LAC">LA Clippers</option>
+      <option value="LAL">Los Angeles Lakers</option>
+      <option value="MEM">Memphis Grizzlies</option>
+      <option value="MIA">Miami Heat</option>
+      <option value="MIL">Milwaukee Bucks</option>
+      <option value="MIN">Minnesota Timberwolves</option>
+      <option value="NOP">New Orleans Pelicans</option>
+      <option value="NYK">New York Knicks</option>
+      <option value="OKC">Oklahoma City Thunder</option>
+      <option value="ORL">Orlando Magic</option>
+      <option value="PHI">Philadelphia 76ers</option>
+      <option value="PHX">Phoenix Suns</option>
+      <option value="POR">Portland Trail Blazers</option>
+      <option value="SAC">Sacramento Kings</option>
+      <option value="SAS">San Antonio Spurs</option>
+      <option value="TOR">Toronto Raptors</option>
+      <option value="UTA">Utah Jazz</option>
+      <option value="WAS">Washington Wizards</option>
+      
+    </select>
+    <button onclick="players()">Show Players</button>
+    <div id="players"></div>
+</body>
+</html>
+<script>
+
+function players() {
+    var team = document.getElementById("team").value;
+    var players = getPlayers(team);
+    var playersDiv = document.getElementById("players");
+    playersDiv.innerHTML = "";
+    if (players.length > 0) {
+        playersDiv.innerHTML = "<h2>Players on " + team + "</h2>";
+        var ul = document.createElement("ul");
+        for (var i = 0; i < players.length; i++) {
+            var li = document.createElement("li");
+            li.appendChild(document.createTextNode(players[i]));
+            ul.appendChild(li);
+        }
+        playersDiv.appendChild(ul);
+    } else {
+        playersDiv.innerHTML = "<p>No players found for " + team + "</p>";
+    }
+}
+
+function getPlayers(team) {
+    switch (team) {
+        case "LAL":
+            return ["LeBron James", "Anthony Davis", "Russell Westbrook"];
+        case "GSW":
+            return ["Stephen Curry", "Klay Thompson", "Draymond Green"];
+        case "BOS":
+            return ["Jayson Tatum", "Jaylen Brown", "Marcus Smart"];
+        case "ATL":
+            return ["Trae Young", "John Collins", "Clint Capela"];
+        case "BOS":
+            return ["Jayson Tatum", "Jaylen Brown", "Marcus Smart"];
+        case "BKN":
+            return ["Kevin Durant", "James Harden", "Kyrie Irving"];
+        case "CHA":
+            return ["LaMelo Ball", "Terry Rozier", "Gordon Hayward"];
+        case "CHI":
+            return ["Zach LaVine", "Nikola Vucevic", "Lauri Markkanen"];
+        case "CLE":
+            return ["Collin Sexton", "Darius Garland", "Kevin Love"];
+        case "DAL":
+            return ["Luka Doncic", "Kristaps Porzingis", "Tim Hardaway Jr."];
+        case "DEN":
+            return ["Nikola Jokic", "Jamal Murray", "Michael Porter Jr."];
+        case "DET":
+            return ["Cade Cunningham", "Jerami Grant", "Killian Hayes"];
+        case "GSW":
+            return ["Stephen Curry", "Klay Thompson", "Draymond Green"];
+        case "HOU":
+            return ["Christian Wood", "John Wall", "Jalen Green"];
+        case "IND":
+            return ["Malcolm Brogdon", "Domantas Sabonis", "Myles Turner"];
+        case "LAC":
+            return ["Kawhi Leonard", "Paul George", "Reggie Jackson"];
+        case "LAL":
+            return ["LeBron James", "Anthony Davis", "Russell Westbrook"];
+        case "MEM":
+            return ["Ja Morant", "Jaren Jackson Jr.", "Dillon Brooks"];
+        case "MIA":
+            return ["Jimmy Butler", "Bam Adebayo", "Tyler Herro"];
+        case "MIL":
+            return ["Giannis Antetokounmpo", "Khris Middleton", "Jrue Holiday"];
+        case "MIN":
+            return ["Karl-Anthony Towns", "D'Angelo Russell", "Anthony Edwards"];
+        case "NOP":
+            return ["Zion Williamson", "Brandon Ingram", "Lonzo Ball"];
+        case "NYK":
+            return ["Julius Randle", "RJ Barrett", "Derrick Rose"];
+        case "OKC":
+            return ["Shai Gilgeous-Alexander", "Luguentz Dort", "Darius Bazley"];
+        case "ORL":
+            return ["Cole Anthony", "Jonathan Isaac", "Markelle Fultz"];
+        case "PHI":
+            return ["Joel Embiid", "Ben Simmons", "Tobias Harris"];
+        case "PHX":
+            return ["Devin Booker", "Chris Paul", "Deandre Ayton"];
+        case "POR":
+            return ["Damian Lillard", "CJ McCollum", "Jusuf Nurkic"];
+        case "SAC":
+            return ["De'Aaron Fox", "Tyrese Haliburton", "Harrison Barnes"];
+        case "SAS":
+            return ["DeMar DeRozan", "LaMarcus Aldridge", "Derrick White"];
+        case "TOR":
+            return ["Pascal Siakam", "Fred VanVleet", "OG Anunoby"];
+        case "UTA":
+            return ["Donovan Mitchell", "Rudy Gobert", "Mike Conley"];
+        case "WAS":
+            return ["Bradley Beal", "Russell Westbrook", "Thomas Bryant"];
+      default:
+        return [];
+    }
+}
+
+</script>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>NBA Team Players</title>
+    <script src="script.js"></script>
+</head>
+<body>
+    <h1>NBA Team Players</h1>
+    <label for="teamInput">Enter NBA Team (ex. LAL):</label>
+    <input type="text" id="teamInput" />
+    <button onclick="displayplayers()">Display Players</button>
+    <div id="output"></div>
+</body>
+</html>
+
+
+<script>
+function displayplayers() {
+    var teamInput = document.getElementById("teamInput").value;
+    var outputDiv = document.getElementById("output");
+  
+    // Clear previous output
+    outputDiv.innerHTML = "";
+
+    // Make an API call to get players for the given team
+    var apiUrl = 'https://www.balldontlie.io/api/v1/players?search=' + encodeURIComponent(teamInput);
+    fetch(apiUrl)
+        .then(function(response) {
+            return response.json();
+        })
+        .then(function(data) {
+            // Display the players on the page
+            if (data && data.data && data.data.length > 0) {
+                var players = data.data;
+                for (var i = 0; i < players.length; i++) {
+                    var player = players[i];
+                    var playerDiv = document.createElement("div");
+                    playerDiv.textContent = player.first_name + " " + player.last_name;
+                    outputDiv.appendChild(playerDiv);
+                }
+            } else {
+                outputDiv.textContent = "No players found for the given team.";
+            }
+        })
+        .catch(function(error) {
+            outputDiv.textContent = "An error occurred while fetching players: " + error.message;
+        });
+}
+</script>
 
